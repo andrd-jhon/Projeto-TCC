@@ -7,12 +7,11 @@ public enum STATE { DISABLED, WAITING, TYPING }
 
 public class DialogSystem : MonoBehaviour
 {
-
     int currentText = 0;
     public bool finished = false;
 
     GameObject NPC;
-    Dialog npcDialog;
+    public Dialog npcDialog;
     DialogueData dialogueData;
     TypeTextAnimation typeText;
     DialogUI dialogUI;
@@ -96,6 +95,7 @@ public class DialogSystem : MonoBehaviour
                 state = STATE.DISABLED;
                 currentText = 0;
                 finished = false;
+                PlayerController.state = PLAYER.FREE;
             }
         }
     }
@@ -117,35 +117,4 @@ public class DialogSystem : MonoBehaviour
             dialogUI.character1.enabled = false;
         }
     }
-
-    // public void Conversation()
-    // {
-    //     dialog = playerController.collidedOBJ;
-    //     if(!isTalk)
-    //     {
-    //         dialogSystem.Next();
-    //         isTalk = true;
-    //     }
-    //     else
-    //     {
-    //         isTalk = false;
-    //     }
-    // }
-
-    // public void Conversation()
-    // {
-    //     if(PlayerController.playerIsClose && conversational){
-    //         if (!isTalk)
-    //         {
-    //             dialogSystem.Next();
-    //             isTalk = true;
-    //         }
-    //         else
-    //         {
-    //             isTalk = false;
-    //         }
-    //     }
-    // }
-
-
 }

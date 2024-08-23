@@ -3,53 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog : MonoBehaviour
+public class Dialog : MonoBehaviour,IInteractable
 {
     public DialogueData dialogueData;
-
-    // int currentText = 0;
-    // bool finished = false;
-    bool playerIsClose;
-    bool isTalk = false;
-    public bool conversational;
-
-    // TypeTextAnimation typeText;
     DialogSystem dialogSystem;
-    DialogUI dialogUI;
-    PlayerController playerController;
-    // GameObject dialog;
+
+    bool isTalk = false;
 
     private void Awake() 
     {
         dialogSystem = FindObjectOfType<DialogSystem>();
-        dialogUI = FindObjectOfType<DialogUI>();
-        playerController = FindObjectOfType<PlayerController>();
-        // dialog = playerController.collidedOBJ;
     }
 
-    private void Start() 
+    public void Interact()
     {
-
-    }
-    
-    
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Player")){
-            conversational = true;
-        }
-        
-    }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Player")){
-            conversational = false;
-        }
-        
+        Conversation();
     }
 
     public void Conversation()
     {
-        if(playerController.playerIsClose){
+        if(PlayerController.playerIsClose && dialogSystem.npcDialog != null){
             if (!isTalk)
             {
                 dialogSystem.Next();
@@ -60,41 +33,6 @@ public class Dialog : MonoBehaviour
                 isTalk = false;
             }
         }
+        else return;
     }
-
-    private void Update() 
-    {
-        
-    }
-
-// ISTO É A ULTIMA VERSÃO 
-//     public void Interact()
-// {
-//     if (Input.GetKeyDown(KeyCode.E))
-//     {
-//         if (!isTalk && playerIsClose)
-//         {
-//             dialogSystem.Next();
-//             isTalk = true;
-//         }
-//         else
-//         {
-//             isTalk = false;
-//         }
-//     }
-// }
-
-    // public void Conversation()
-    // {
-    //     dialog = playerController.collidedOBJ;
-    //     if(!isTalk)
-    //     {
-    //         dialogSystem.Next();
-    //         isTalk = true;
-    //     }
-    //     else
-    //     {
-    //         isTalk = false;
-    //     }
-    // }
 }

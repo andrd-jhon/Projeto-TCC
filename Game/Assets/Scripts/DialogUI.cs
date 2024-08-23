@@ -43,20 +43,6 @@ public class DialogUI : MonoBehaviour
         }
     }
 
-    private void Start() {
-
-    }
-
-    // public void SetNames(string nameText1, string nameText2){
-    //     name1.text = nameText1;
-    //     name2.text = nameText2;
-
-    // }
-    // public void SetCharacters(Sprite image1, Sprite image2){
-    //     character1.sprite = image1;
-    //     character2.sprite = image2;
-    // }
-
     public void SetCharacter(string nameText1, Sprite image1, string nameText2, Sprite image2){
         name1.text = nameText1;
         character1.sprite = image1;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PLAYER { FREE, INTERACT }
 
@@ -9,23 +10,27 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     DialogSystem dialogSystem;
     Dialog dialog;
+    FadeComponent fadeComponent;
     public GameObject collidedOBJ;
 
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
-    public bool playerIsClose;
+    public static bool playerIsClose;
     bool canMove;
     
-    public PLAYER state;
+    public static PLAYER state;
     
     private void Awake() 
     {
         dialog = FindObjectOfType<Dialog>();
         dialogSystem = FindObjectOfType<DialogSystem>();
+        fadeComponent = FindObjectOfType<FadeComponent>();
     }
     
     private void Start() 
     {
+        // DontDestroyOnLoad(this.gameObject);
+        // SceneManager.sceneLoaded += OnSceneLoaded;
         state = PLAYER.FREE;
     }
 
@@ -41,7 +46,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case PLAYER.FREE:
                 Interaction();
-                // dialog.Interact();
                 Move();
                 break;
         }
@@ -62,37 +66,42 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Interactable")){
-            collidedOBJ = other.gameObject;
+    void OnTriggerEnter2D(Collider2D collided) {
+        if(collided.CompareTag("Interactable")){
+            collidedOBJ = collided.gameObject;
             playerIsClose = true;
             Debug.Log("O player colidiu com o" + collidedOBJ.name);
         }
         
     }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Interactable")){
+    void OnTriggerExit2D(Collider2D collided) {
+        if(collided.CompareTag("Interactable")){
             collidedOBJ = null;
             playerIsClose = false;
-            Debug.Log("O player saiu de colisao com o" + other.gameObject.name);
-        }
-        
+            Debug.Log("O player saiu de colisao com o" + collided.gameObject.name);
+        }   
     }
 
     
     void IsFree(){
-        if(dialogSystem.state == STATE.DISABLED){
-            state = PLAYER.FREE;
-        }else{
+        if(dialogSystem.state != STATE.DISABLED){
             state = PLAYER.INTERACT;
         }
     }
 
     void Interaction(){
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
-        {
-            dialog.Conversation();
-            state = PLAYER.INTERACT;
+        {            
+            IInteractable obj = collidedOBJ.GetComponent<IInteractable>();
+
+            if(obj == null) return;
+
+            obj.Interact();
         }
     }
+
+    // void OnSceneLoaded(Scene sceneLoaded, LoadSceneMode loadSceneMode)
+    // {
+    //     StartCoroutine(fadeComponent.FadeOut());
+    // }
 }
