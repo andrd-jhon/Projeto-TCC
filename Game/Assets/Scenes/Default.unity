@@ -3811,7 +3811,8 @@ Transform:
   m_LocalPosition: {x: -4.622416, y: 7.9692283, z: -0.012608277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1548393394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &556451314
@@ -14115,7 +14116,7 @@ RectTransform:
   - {fileID: 1876556180}
   - {fileID: 623030952}
   - {fileID: 1566657247}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 556451313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15510,7 +15511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4a2c7761bf1894da4433ae8949fba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAsync: 1
+  isAsync: 0
   namePlace: InsideSomething
 --- !u!1001 &2121768027
 PrefabInstance:
@@ -15580,10 +15581,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 556451313}
   - {fileID: 1049952327}
   - {fileID: 1989293621}
-  - {fileID: 1548393394}
+  - {fileID: 556451313}
   - {fileID: 764711593}
-  - {fileID: 1645783695}
   - {fileID: 2011546133}
+  - {fileID: 1645783695}

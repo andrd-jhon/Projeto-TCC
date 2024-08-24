@@ -38,6 +38,7 @@ public class FadeComponent : MonoBehaviour
 
     public IEnumerator FadeOut()
     {
+        yield return new WaitForSeconds(1);
         yield return StartCoroutine(Fade(color, transparentColor, outDuration));
         fadeImage.enabled = false;
         PlayerController.state = PLAYER.FREE;
