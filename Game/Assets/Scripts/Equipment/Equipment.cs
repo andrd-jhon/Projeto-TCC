@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
-    [SerializeField]
-    private string EquipmentName;
-
-    [SerializeField]
-    private Sprite image;
-
-    [TextArea]
-    [SerializeField]
-    private string description;
+    public EquipmentData equipmentData;
 
     private EquipmentManager equipmentManager;
     
@@ -23,7 +15,7 @@ public class Equipment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player"){
-            equipmentManager.AddEquipment(EquipmentName, image, description);
+            equipmentManager.AddEquipment(equipmentData.equipmentName, equipmentData.image, equipmentData.description);
             Destroy(gameObject);
         }
     }
