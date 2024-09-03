@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
+
+public class EquipmentField : MonoBehaviour, IPointerClickHandler
+{
+    public string equipmentName;
+    public Sprite equipmentSprite;
+    public bool isFilled;
+    public string description;
+
+    // [SerializeField]
+    // private Sprite defaultImage;
+
+    [SerializeField]
+    private Image equipmentImage;
+
+    public Image descriptionImage;
+    public TMP_Text descriptionName;
+    public TMP_Text descriptionText;
+
+    public GameObject select;
+    public bool equipmentSelected;
+
+    private EquipmentManager equipmentManager;
+
+    private void Awake()
+    {
+        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+    }
+
+    public void InsertEquipment(string equipmentName, Sprite equipmentSprite, string description)
+    {
+        this.equipmentName = equipmentName;
+        this.equipmentSprite = equipmentSprite;
+        this.description = description;
+        isFilled = true;
+        equipmentImage.sprite = equipmentSprite;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            OnLeftClick();
+        }
+    }
+
+    private void OnLeftClick()
+    {
+        equipmentManager.Deselect();
+        select.SetActive(true);
+        equipmentSelected = true;
+        descriptionName.text = equipmentName;
+        descriptionText.text = description;
+        descriptionImage.sprite = equipmentSprite;
+    }
+
+    // private void ResetStates()
+    // {
+    //     descriptionName.text = "";
+    //     descriptionText.text = "";
+    //     descriptionImage.sprite = null;
+    // }
+}

@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         if(collided.CompareTag("Interactable")){
             collidedOBJ = collided.gameObject;
             playerIsClose = true;
-            Debug.Log("O player colidiu com o" + collidedOBJ.name);
+            // Debug.Log("O player colidiu com o" + collidedOBJ.name);
         }
         
     }
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         if(collided.CompareTag("Interactable")){
             collidedOBJ = null;
             playerIsClose = false;
-            Debug.Log("O player saiu de colisao com o" + collided.gameObject.name);
+            // Debug.Log("O player saiu de colisao com o" + collided.gameObject.name);
         }   
     }
 
@@ -104,4 +104,6 @@ public class PlayerController : MonoBehaviour
     // {
     //     StartCoroutine(fadeComponent.FadeOut());
     // }
+
 }
+
