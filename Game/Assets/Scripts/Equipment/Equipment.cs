@@ -7,6 +7,8 @@ public class Equipment : MonoBehaviour
     public EquipmentData equipmentData;
 
     private EquipmentManager equipmentManager;
+
+    public EquipmentCategory equipmentCategory;
     
     void Start()
     {
@@ -15,7 +17,7 @@ public class Equipment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player"){
-            equipmentManager.AddEquipment(equipmentData.equipmentName, equipmentData.image, equipmentData.description);
+            equipmentManager.AddEquipment(equipmentData.equipmentName, equipmentData.image, equipmentData.description, equipmentData.equipmentCategory);
             Destroy(gameObject);
         }
     }

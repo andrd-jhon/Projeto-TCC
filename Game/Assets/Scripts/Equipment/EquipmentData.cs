@@ -14,10 +14,10 @@ using UnityEngine;
     
     public EquipmentCategory equipmentCategory = new EquipmentCategory();
 
-    public enum EquipmentCategory{
+}
+public enum EquipmentCategory{
         sword,
         bow,
         shield,
-        potion
-    };
-}
+        potion,
+};

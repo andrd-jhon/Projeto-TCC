@@ -11,6 +11,7 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     public Sprite equipmentSprite;
     public bool isFilled;
     public string description;
+    public EquipmentCategory equipmentCategory;
 
     // [SerializeField]
     // private Sprite defaultImage;
@@ -25,18 +26,19 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     public GameObject select;
     public bool equipmentSelected;
 
-    private EquipmentManager equipmentManager;
+    // private EquipmentManager equipmentManager;
 
     private void Awake()
     {
-        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+        // equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
     }
 
-    public void InsertEquipment(string equipmentName, Sprite equipmentSprite, string description)
+    public void InsertEquipment(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
     {
         this.equipmentName = equipmentName;
         this.equipmentSprite = equipmentSprite;
         this.description = description;
+        this.equipmentCategory = equipmentCategory;
         isFilled = true;
         equipmentImage.sprite = equipmentSprite;
     }
@@ -51,7 +53,7 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
 
     private void OnLeftClick()
     {
-        equipmentManager.Deselect();
+        // equipmentManager.Deselect();
         select.SetActive(true);
         equipmentSelected = true;
         descriptionName.text = equipmentName;
