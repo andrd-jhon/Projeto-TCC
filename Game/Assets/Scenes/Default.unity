@@ -4195,6 +4195,7 @@ GameObject:
   - component: {fileID: 399459789}
   - component: {fileID: 399459788}
   - component: {fileID: 399459790}
+  - component: {fileID: 399459791}
   m_Layer: 5
   m_Name: SelectedEquipments
   m_TagString: Untagged
@@ -4289,6 +4290,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &399459791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399459786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a657a4ce5e7964bbabb59250363ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 1527239198}
+  bow: {fileID: 1013560625}
+  shield: {fileID: 1548156022}
+  potion: {fileID: 705941851}
 --- !u!1001 &424036468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6160,6 +6177,7 @@ GameObject:
   - component: {fileID: 705941852}
   - component: {fileID: 705941854}
   - component: {fileID: 705941853}
+  - component: {fileID: 705941855}
   m_Layer: 5
   m_Name: Potion
   m_TagString: Untagged
@@ -6224,6 +6242,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705941851}
   m_CullTransparentMesh: 1
+--- !u!114 &705941855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705941851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210edff5a67e32a4ba6a9281514a7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &745104466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6862,6 +6892,7 @@ GameObject:
   - component: {fileID: 1013560626}
   - component: {fileID: 1013560628}
   - component: {fileID: 1013560627}
+  - component: {fileID: 1013560629}
   m_Layer: 5
   m_Name: Bow
   m_TagString: Untagged
@@ -6926,6 +6957,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013560625}
   m_CullTransparentMesh: 1
+--- !u!114 &1013560629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013560625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210edff5a67e32a4ba6a9281514a7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1023472022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8050,6 +8093,7 @@ GameObject:
   - component: {fileID: 1527239199}
   - component: {fileID: 1527239201}
   - component: {fileID: 1527239200}
+  - component: {fileID: 1527239202}
   m_Layer: 5
   m_Name: Sword
   m_TagString: Untagged
@@ -8114,6 +8158,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527239198}
   m_CullTransparentMesh: 1
+--- !u!114 &1527239202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527239198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210edff5a67e32a4ba6a9281514a7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1535560404
 GameObject:
   m_ObjectHideFlags: 0
@@ -16347,6 +16403,7 @@ GameObject:
   - component: {fileID: 1548156023}
   - component: {fileID: 1548156025}
   - component: {fileID: 1548156024}
+  - component: {fileID: 1548156026}
   m_Layer: 5
   m_Name: Shield
   m_TagString: Untagged
@@ -16411,6 +16468,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548156022}
   m_CullTransparentMesh: 1
+--- !u!114 &1548156026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548156022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210edff5a67e32a4ba6a9281514a7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1625079515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17396,6 +17465,7 @@ GameObject:
   - component: {fileID: 1868835503}
   - component: {fileID: 1868835502}
   - component: {fileID: 1868835506}
+  - component: {fileID: 1868835507}
   m_Layer: 5
   m_Name: EquipmentSystem
   m_TagString: Untagged
@@ -17503,6 +17573,19 @@ MonoBehaviour:
   bowSettings: {fileID: 1814138327}
   shieldSettings: {fileID: 871938937}
   potionSettings: {fileID: 190575616}
+--- !u!114 &1868835507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868835501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!224 &1872407914 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7096227107939040503, guid: 6177716b06e18a344b753e249dbdc4ba, type: 3}
