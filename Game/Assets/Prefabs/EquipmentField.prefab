@@ -93,7 +93,12 @@ MonoBehaviour:
   equipmentName: 
   equipmentSprite: {fileID: 0}
   isFilled: 0
+  description: 
+  equipmentCategory: 0
   equipmentImage: {fileID: 7268301319308834500}
+  descriptionImage: {fileID: 0}
+  descriptionName: {fileID: 0}
+  descriptionText: {fileID: 0}
   select: {fileID: 2451188954140136029}
   equipmentSelected: 0
 --- !u!1 &2451188954140136029

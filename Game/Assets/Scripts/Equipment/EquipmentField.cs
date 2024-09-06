@@ -26,11 +26,11 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     public GameObject select;
     public bool equipmentSelected;
 
-    // private EquipmentManager equipmentManager;
+    private EquipmentManager equipmentManager;
 
     private void Awake()
     {
-        // equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
     }
 
     public void InsertEquipment(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
@@ -53,7 +53,7 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
 
     private void OnLeftClick()
     {
-        // equipmentManager.Deselect();
+        equipmentManager.Deselect();
         select.SetActive(true);
         equipmentSelected = true;
         descriptionName.text = equipmentName;

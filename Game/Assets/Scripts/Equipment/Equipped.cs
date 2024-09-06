@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Equipped : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject sword, bow, shield, potion;
+    // [SerializeField]
+    // private GameObject sword, bow, shield, potion;
 
-    private void ChooseType()
-    {
+    // private void ChooseType()
+    // {
         
-    }
+    // }
 }

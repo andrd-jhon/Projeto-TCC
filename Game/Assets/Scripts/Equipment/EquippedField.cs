@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EquippedField : MonoBehaviour
 {
-    SetImage(){
+    // SetImage(){
         
-    }
+    // }
 }
