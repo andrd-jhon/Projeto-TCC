@@ -54,11 +54,15 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     private void OnLeftClick()
     {
         equipmentManager.Deselect();
+        descriptionImage.enabled = true;
         select.SetActive(true);
         equipmentSelected = true;
         descriptionName.text = equipmentName;
         descriptionText.text = description;
         descriptionImage.sprite = equipmentSprite;
+        if(descriptionImage.sprite == null){
+            descriptionImage.enabled = false;
+        }
     }
 
     // private void ResetStates()

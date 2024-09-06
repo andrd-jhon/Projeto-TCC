@@ -5,7 +5,6 @@ using UnityEngine;
 public class EquipmentManager : MonoBehaviour
 {
     public GameObject EquipmentMenu;
-    // public EquipmentField[] equipmentField;
 
     public EquipmentField[] allFields;
 
@@ -18,16 +17,8 @@ public class EquipmentManager : MonoBehaviour
     public EquipmentField bowSelected;
     public EquipmentField shieldSelected;
     public EquipmentField potionSelected;
-
-    // public SwordSettings swordSettings;
-    // public BowSettings bowSettings;
-    // public ShieldSettings shieldSettings;
-    // public PotionSettings potionSettings;
     
-
     private bool isActive;
-
-    // public EquipmentCategory equipmentCategory;
 
     void Update()
     {
@@ -43,20 +34,6 @@ public class EquipmentManager : MonoBehaviour
         
     }
 
-    // public void AddEquipment(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
-    // {
-        // VerifyType(equipmentName, equipmentSprite, description, equipmentCategory);
-
-        // for(int i = 0; i < equipmentField.Length; i++)
-        // {
-        //     if(equipmentField[i].isFilled == false)
-        //     {
-        //         equipmentField[i].InsertEquipment(equipmentName, equipmentSprite, description);
-        //         return;
-        //     }
-        // }
-    // }
-
     public void Deselect()
     {
         for(int i = 0; i < allFields.Length; i++)
@@ -65,9 +42,7 @@ public class EquipmentManager : MonoBehaviour
             allFields[i].equipmentSelected = false;
             allFields[i].descriptionName.text = "";
             allFields[i].descriptionText.text = "";
-            allFields[i].descriptionImage.sprite = null;
-            Debug.Log("Desativou!");
-            // allFields[i].select.SetActive(false);
+            allFields[i].descriptionImage.enabled = false;
         }
     }
 
