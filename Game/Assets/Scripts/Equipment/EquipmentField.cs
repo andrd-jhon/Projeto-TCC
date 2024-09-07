@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class EquipmentField : MonoBehaviour, IPointerClickHandler
 {
@@ -13,20 +14,18 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     public string description;
     public EquipmentCategory equipmentCategory;
 
-    // [SerializeField]
-    // private Sprite defaultImage;
+    private bool empty = true;
 
     [SerializeField]
     private Image equipmentImage;
-
-    public Image descriptionImage;
-    public TMP_Text descriptionName;
-    public TMP_Text descriptionText;
 
     public GameObject select;
     public bool equipmentSelected;
 
     private EquipmentManager equipmentManager;
+    public EquipmentInformationsUI equipmentInformationsUI;
+
+    public event Action<EquipmentField> OnEquipmentDrop, OnEquipmentBeginDrag, OnEquipmentEndDrag, onpointclick;
 
     private void Awake()
     {
@@ -47,23 +46,31 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     {
         if(eventData.button == PointerEventData.InputButton.Left)
         {
-            OnLeftClick();
+            equipmentManager.Deselect();
+            select.SetActive(true);
+            equipmentInformationsUI.SetInformations(equipmentName, equipmentSprite, description);
+            equipmentSelected = true;
         }
     }
 
-    private void OnLeftClick()
-    {
-        equipmentManager.Deselect();
-        descriptionImage.enabled = true;
-        select.SetActive(true);
-        equipmentSelected = true;
-        descriptionName.text = equipmentName;
-        descriptionText.text = description;
-        descriptionImage.sprite = equipmentSprite;
-        if(descriptionImage.sprite == null){
-            descriptionImage.enabled = false;
-        }
+    public void OnBeginDrag(){
+        if(empty)
+            return;
+        OnEquipmentBeginDrag?.Invoke(this);
     }
+
+    public void OnDrop(){
+        OnEquipmentDrop?.Invoke(this);
+    }
+
+    public void OnEndDrag(){
+        OnEquipmentEndDrag?.Invoke(this);
+    }
+
+    public void onpointerclick(){
+        onpointclick?.Invoke(this);
+    }
+
 
     // private void ResetStates()
     // {

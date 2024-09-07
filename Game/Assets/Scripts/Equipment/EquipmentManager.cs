@@ -20,6 +20,11 @@ public class EquipmentManager : MonoBehaviour
     
     private bool isActive;
 
+    private void Start() 
+    {
+        MouseEvents();    
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && isActive){
@@ -40,9 +45,9 @@ public class EquipmentManager : MonoBehaviour
         {
             allFields[i].select.SetActive(false);
             allFields[i].equipmentSelected = false;
-            allFields[i].descriptionName.text = "";
-            allFields[i].descriptionText.text = "";
-            allFields[i].descriptionImage.enabled = false;
+            allFields[i].equipmentInformationsUI.descriptionName.text = "";
+            allFields[i].equipmentInformationsUI.descriptionText.text = "";
+            allFields[i].equipmentInformationsUI.descriptionImage.enabled = false;
         }
     }
 
@@ -63,7 +68,36 @@ public class EquipmentManager : MonoBehaviour
                 SetPotion(equipmentName, equipmentSprite, description, equipmentCategory);
                 break;
         }
+    }
 
+    public void MouseEvents()
+    {
+        for(int i = 0; i < allFields.Length; i++)
+        {
+            allFields[i].OnEquipmentBeginDrag += HandleBeginDrag;
+            allFields[i].OnEquipmentDrop += HandleDrop;
+            allFields[i].OnEquipmentEndDrag += HandleEndDrag;
+            allFields[i].onpointclick += handlepoint;
+        }
+    }
+
+    private void HandleBeginDrag(EquipmentField obj)
+    {
+        Debug.Log(obj.name);
+    }
+
+    private void HandleDrop(EquipmentField obj)
+    {
+        
+    }
+    
+    private void HandleEndDrag(EquipmentField obj)
+    {
+        
+    }
+
+    private void handlepoint(EquipmentField obj){
+        Debug.Log(obj.name);
     }
 
     private void SetSword(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
