@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6eee5003e9ff7f84bac7046d4d8be5f3, type: 3}
-  m_Name: cAIXAjasdfnjn
+  m_Name: potionzin
   m_EditorClassIdentifier: 
-  equipmentName: cAIXA
-  image: {fileID: 5924886465358179667, guid: 0df9f5e11f120f44d99171a8bd2568a3, type: 3}
+  equipmentName: potioon
+  image: {fileID: 21300000, guid: 3fd39b235622b1d458a1cd7c06d4572f, type: 3}
   description: lksdfjbsdligjsldkgjsd
-  equipmentCategory: 1
+  equipmentCategory: 0

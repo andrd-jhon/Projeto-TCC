@@ -10,12 +10,13 @@ public class EquipmentInformationsUI : MonoBehaviour
     public TMP_Text descriptionName;
     public TMP_Text descriptionText;
 
-    public void SetInformations(string equipmentName, Sprite equipmentSprite, string description)
+    public void SetInformations(EquipmentData equipmentData)
     {
         descriptionImage.enabled = true;
-        descriptionName.text = equipmentName;
-        descriptionText.text = description;
-        descriptionImage.sprite = equipmentSprite;
+        // Debug.Log(equipmentData.equipmentName + " pao");
+        descriptionName.text = equipmentData.equipmentName;
+        descriptionText.text = equipmentData.description;
+        descriptionImage.sprite = equipmentData.image;
         if(descriptionImage.sprite == null){
             descriptionImage.enabled = false;
         }

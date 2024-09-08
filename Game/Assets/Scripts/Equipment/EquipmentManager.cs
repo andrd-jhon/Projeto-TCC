@@ -17,12 +17,16 @@ public class EquipmentManager : MonoBehaviour
     public EquipmentField bowSelected;
     public EquipmentField shieldSelected;
     public EquipmentField potionSelected;
+
+    [SerializeField]
+    private MouseFollower mouseFollower;
     
     private bool isActive;
 
     private void Start() 
     {
-        MouseEvents();    
+        MouseEvents();
+        // mouseFollower.Toggle(false);
     }
 
     void Update()
@@ -51,21 +55,22 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void VerifyType(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    public void VerifyType(EquipmentData equipmentData)
     {
-        switch (equipmentCategory)
+        switch (equipmentData.equipmentCategory)
         {
             case EquipmentCategory.sword:
-                SetSword(equipmentName, equipmentSprite, description, equipmentCategory);
+                // Debug.Log(equipmentData.equipmentCategory);
+                SetSword(equipmentData);
                 break;
             case EquipmentCategory.bow:
-                SetBow(equipmentName, equipmentSprite, description, equipmentCategory);
+                SetBow(equipmentData);
                 break;
             case EquipmentCategory.shield:
-                SetShield(equipmentName, equipmentSprite, description, equipmentCategory);
+                SetShield(equipmentData);
                 break;
             case EquipmentCategory.potion:
-                SetPotion(equipmentName, equipmentSprite, description, equipmentCategory);
+                SetPotion(equipmentData);
                 break;
         }
     }
@@ -75,93 +80,121 @@ public class EquipmentManager : MonoBehaviour
         for(int i = 0; i < allFields.Length; i++)
         {
             allFields[i].OnEquipmentBeginDrag += HandleBeginDrag;
-            allFields[i].OnEquipmentDrop += HandleDrop;
+            allFields[i].OnEquipmentDroppedOn += HandleSwap;
             allFields[i].OnEquipmentEndDrag += HandleEndDrag;
-            allFields[i].onpointclick += handlepoint;
+            // allFields[i].onpointclick += handlepoint;
         }
     }
 
     private void HandleBeginDrag(EquipmentField obj)
     {
-        Debug.Log(obj.name);
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(obj.equipmentData);
     }
 
-    private void HandleDrop(EquipmentField obj)
+    private void HandleSwap(EquipmentField targetField)
     {
-        
+        Debug.Log(targetField.equipmentName);
+        if (targetField == null || mouseFollower.currentEquipment == null) return;
+        EquipmentField sourceField = FindSourceField(mouseFollower.currentEquipment);
+        if (targetField.isFilled)
+        {
+            EquipmentData tempData = targetField.equipmentData;
+            targetField.InsertEquipment(sourceField.equipmentData);
+            sourceField.InsertEquipment(tempData);
+        }
+        else
+        {
+            targetField.InsertEquipment(sourceField.equipmentData);
+            sourceField.RemoveEquipment();
+        }
     }
+    
     
     private void HandleEndDrag(EquipmentField obj)
     {
-        
+        mouseFollower.Toggle(false);
     }
 
-    private void handlepoint(EquipmentField obj){
-        Debug.Log(obj.name);
+    // private void handlepoint(EquipmentField obj){
+    //     Debug.Log(obj.name);
+    //     mouseFollower.SetData(obj.equipmentName, obj.equipmentSprite, obj.description, obj.equipmentCategory);
+    // }
+
+    private EquipmentField FindSourceField(EquipmentData equipmentData)
+    {
+        foreach (var field in allFields)
+        {
+            if (field.equipmentData == equipmentData){
+                return field;
+            }
+        }
+    return null;
     }
 
-    private void SetSword(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    private void SetSword(EquipmentData equipmentData)
     {
         if(swordSelected.equipmentName == ""){
-            swordSelected.InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+            // Debug.Log(equipmentData.equipmentCategory);
+            swordSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
             {
                 if(swordField[i].isFilled == false)
                 {
-                    swordField[i].InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+                    swordField[i].InsertEquipment(equipmentData);
                     return;
                 }
             }
         }
     }
 
-    private void SetBow(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    private void SetBow(EquipmentData equipmentData)
     {
         if(bowSelected.equipmentName == null){
-            bowSelected.InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+            bowSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
             {
                 if(bowField[i].isFilled == false)
                 {
-                    bowField[i].InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+                    bowField[i].InsertEquipment(equipmentData);
                     return;
                 }
             }
         }
     }
 
-    private void SetShield(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    private void SetShield(EquipmentData equipmentData)
     {
         if(shieldSelected.equipmentName == null){
-            shieldSelected.InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+            shieldSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < shieldField.Length; i++)
             {
                 if(shieldField[i].isFilled == false)
                 {
-                    shieldField[i].InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+                    shieldField[i].InsertEquipment(equipmentData);
                     return;
                 }
             }
         }
     }
 
-    private void SetPotion(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    private void SetPotion(EquipmentData equipmentData)
     {
         if(potionSelected.equipmentName == null){
-            potionSelected.InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+            potionSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < potionField.Length; i++)
             {
                 if(potionField[i].isFilled == false)
                 {
-                    potionField[i].InsertEquipment(equipmentName, equipmentSprite, description, equipmentCategory);
+                    potionField[i].InsertEquipment(equipmentData);
                     return;
                 }
             }

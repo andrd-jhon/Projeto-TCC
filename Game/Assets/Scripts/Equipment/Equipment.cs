@@ -17,8 +17,9 @@ public class Equipment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player"){
-            equipmentManager.VerifyType(equipmentData.equipmentName, equipmentData.image, equipmentData.description, equipmentData.equipmentCategory);
+            equipmentManager.VerifyType(equipmentData);
             Destroy(gameObject);
+            // Debug.Log(equipmentData.equipmentName);
         }
     }
 }

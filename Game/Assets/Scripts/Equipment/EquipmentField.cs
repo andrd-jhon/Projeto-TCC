@@ -25,21 +25,36 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
     private EquipmentManager equipmentManager;
     public EquipmentInformationsUI equipmentInformationsUI;
 
-    public event Action<EquipmentField> OnEquipmentDrop, OnEquipmentBeginDrag, OnEquipmentEndDrag, onpointclick;
+    public EquipmentData equipmentData;
+
+    public event Action<EquipmentField> OnEquipmentDroppedOn, OnEquipmentBeginDrag, OnEquipmentEndDrag; //onpointclick;
 
     private void Awake()
     {
         equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
     }
 
-    public void InsertEquipment(string equipmentName, Sprite equipmentSprite, string description, EquipmentCategory equipmentCategory)
+    public void InsertEquipment(EquipmentData equipmentData)
     {
-        this.equipmentName = equipmentName;
-        this.equipmentSprite = equipmentSprite;
-        this.description = description;
-        this.equipmentCategory = equipmentCategory;
+        this.equipmentData = equipmentData;
+        equipmentName = equipmentData.equipmentName;
+        equipmentSprite = equipmentData.image;
+        description = equipmentData.description;
+        equipmentCategory = equipmentData.equipmentCategory;
         isFilled = true;
-        equipmentImage.sprite = equipmentSprite;
+        equipmentImage.sprite = equipmentData.image;
+        empty = false;
+    }
+
+    public void RemoveEquipment()
+    {
+        this.equipmentData = null;
+        equipmentName = "";
+        equipmentSprite = null;
+        description = "";
+        isFilled = false;
+        equipmentImage.sprite = null;
+        empty = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -48,28 +63,34 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
         {
             equipmentManager.Deselect();
             select.SetActive(true);
-            equipmentInformationsUI.SetInformations(equipmentName, equipmentSprite, description);
+                if(equipmentData != null){
+                    equipmentInformationsUI.SetInformations(equipmentData);
+                }
             equipmentSelected = true;
         }
     }
 
     public void OnBeginDrag(){
-        if(empty)
+        if(empty){
+            // Debug.Log("Esta vazio");
             return;
-        OnEquipmentBeginDrag?.Invoke(this);
+        }
+        else{
+            OnEquipmentBeginDrag?.Invoke(this);
+        }
     }
 
     public void OnDrop(){
-        OnEquipmentDrop?.Invoke(this);
+        OnEquipmentDroppedOn?.Invoke(this);
     }
 
     public void OnEndDrag(){
         OnEquipmentEndDrag?.Invoke(this);
     }
 
-    public void onpointerclick(){
-        onpointclick?.Invoke(this);
-    }
+    // public void onpointerclick(){
+    //     onpointclick?.Invoke(this);
+    // }
 
 
     // private void ResetStates()
