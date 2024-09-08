@@ -24,11 +24,11 @@ public class MouseFollower : MonoBehaviour
         currentEquipment = equipmentData;
     }
 
-    public void ClearData()
-    {
-        equipmentField.RemoveEquipment();
-        currentEquipment = null;
-    }
+    // public void ClearData()
+    // {
+    //     equipmentField.RemoveEquipment();
+    //     currentEquipment = null;
+    // }
 
     void Update()
     {
@@ -45,9 +45,9 @@ public class MouseFollower : MonoBehaviour
     public void Toggle(bool val)
     {
         gameObject.SetActive(val);
-        if (!val)
-        {
-            ClearData();
-        }
+        // if (!val)
+        // {
+        //     ClearData();
+        // }
     }
 }

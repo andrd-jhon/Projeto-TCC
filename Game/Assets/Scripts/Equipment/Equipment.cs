@@ -8,7 +8,7 @@ public class Equipment : MonoBehaviour
 
     private EquipmentManager equipmentManager;
 
-    public EquipmentCategory equipmentCategory;
+    // public EquipmentCategory equipmentCategory;
     
     void Start()
     {

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
-public class EquipmentField : MonoBehaviour, IPointerClickHandler
+public class EquipmentField : MonoBehaviour, IPointerClickHandler, IDropHandler
 {
     public string equipmentName;
     public Sprite equipmentSprite;
@@ -18,6 +18,9 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private Image equipmentImage;
+
+    [SerializeField]
+    private Sprite spriteDefault;
 
     public GameObject select;
     public bool equipmentSelected;
@@ -40,7 +43,7 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
         equipmentName = equipmentData.equipmentName;
         equipmentSprite = equipmentData.image;
         description = equipmentData.description;
-        equipmentCategory = equipmentData.equipmentCategory;
+        // equipmentCategory = equipmentData.equipmentCategory;
         isFilled = true;
         equipmentImage.sprite = equipmentData.image;
         empty = false;
@@ -53,7 +56,7 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
         equipmentSprite = null;
         description = "";
         isFilled = false;
-        equipmentImage.sprite = null;
+        equipmentImage.sprite = spriteDefault;
         empty = true;
     }
 
@@ -80,7 +83,8 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnDrop(){
+    public void OnDrop(PointerEventData eventData){
+        // Debug.Log("Evento sendo chamado");
         OnEquipmentDroppedOn?.Invoke(this);
     }
 

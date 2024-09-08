@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fdb86c183a9f6e34fb3f2c86e2c1c1bf
+guid: 878c9533eeccbb0489627fde9065390f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 403908294360940818
-    second: caixaDeDialogo 1_0
+      213: 3468543957008976921
+    second: BaseSwordSilhouette_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: caixaDeDialogo 1_0
+      name: BaseSwordSilhouette_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 346
-        height: 96
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 211c7372478fa9500800000000000000
-      internalID: 403908294360940818
+      spriteID: 91c095d0a5eb22030800000000000000
+      internalID: 3468543957008976921
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      caixaDeDialogo 1_0: 403908294360940818
+      BaseSwordSilhouette_0: 3468543957008976921
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

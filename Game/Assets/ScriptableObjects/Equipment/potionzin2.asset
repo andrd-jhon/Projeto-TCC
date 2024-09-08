@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6eee5003e9ff7f84bac7046d4d8be5f3, type: 3}
-  m_Name: CAIXAAAA
+  m_Name: potionzin2
   m_EditorClassIdentifier: 
-  equipmentName: CAAAAAIXXAAAAA
-  image: {fileID: 21300000, guid: c5144876e97e88642b1f1ce5cc8f69cd, type: 3}
-  description: Ajvbkjdbfkdsjbfkldjfbalkjf
-  equipmentCategory: 2
+  equipmentName: "Po\xE7\xE3o de paralisa\xE7\xE3o"
+  image: {fileID: 21300000, guid: 9560ad52126c86d4cb30d7b1c70854c5, type: 3}
+  description: "Quando rompido faz surgir uma \xE1rea que torna todas as criaturas
+    afetas paralisadas\n"
+  equipmentCategory: 3

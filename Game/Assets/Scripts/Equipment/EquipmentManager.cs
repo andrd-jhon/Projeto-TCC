@@ -94,25 +94,26 @@ public class EquipmentManager : MonoBehaviour
 
     private void HandleSwap(EquipmentField targetField)
     {
-        Debug.Log(targetField.equipmentName);
-        if (targetField == null || mouseFollower.currentEquipment == null) return;
-        EquipmentField sourceField = FindSourceField(mouseFollower.currentEquipment);
-        if (targetField.isFilled)
+        if(targetField == null || mouseFollower.currentEquipment == null || targetField.equipmentCategory != mouseFollower.currentEquipment.equipmentCategory) return; //verifica se é nulo, se a categoria é correta e se o equipamento selecionado está preenchido
+        EquipmentField sourceField = FindSourceField(mouseFollower.currentEquipment); //variável referente ao campo origem
+        if(targetField.isFilled) //verifica se há item no campo destino
         {
-            EquipmentData tempData = targetField.equipmentData;
-            targetField.InsertEquipment(sourceField.equipmentData);
-            sourceField.InsertEquipment(tempData);
+            EquipmentData tempData = targetField.equipmentData; //cria variável temporária com dados do campo destino
+            targetField.InsertEquipment(sourceField.equipmentData); //campo destino recebe dados do seguidor do mouse
+            sourceField.InsertEquipment(tempData); //campo orifem recebe dados do destino
         }
-        else
+        else if(sourceField == swordSelected || sourceField == bowSelected || sourceField == shieldSelected || sourceField == potionSelected) return;
+        else // se não houver o campo apenas recebe os dados do original
         {
-            targetField.InsertEquipment(sourceField.equipmentData);
-            sourceField.RemoveEquipment();
+            targetField.InsertEquipment(sourceField.equipmentData); //insere o capo origem no campo destino
+            sourceField.RemoveEquipment();  //remove os dados do campo origem
         }
     }
     
     
     private void HandleEndDrag(EquipmentField obj)
     {
+        // shieldSelected.InsertEquipment(mouseFollower.equipmentField.equipmentData); FUNCIONA
         mouseFollower.Toggle(false);
     }
 
@@ -152,7 +153,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetBow(EquipmentData equipmentData)
     {
-        if(bowSelected.equipmentName == null){
+        if(bowSelected.equipmentName == ""){
             bowSelected.InsertEquipment(equipmentData);
         }
         else{
@@ -169,7 +170,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetShield(EquipmentData equipmentData)
     {
-        if(shieldSelected.equipmentName == null){
+        if(shieldSelected.equipmentName == ""){
             shieldSelected.InsertEquipment(equipmentData);
         }
         else{
@@ -186,7 +187,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetPotion(EquipmentData equipmentData)
     {
-        if(potionSelected.equipmentName == null){
+        if(potionSelected.equipmentName == ""){
             potionSelected.InsertEquipment(equipmentData);
         }
         else{
