@@ -13,10 +13,13 @@ public class EquipmentManager : MonoBehaviour
     public EquipmentField[] shieldField;
     public EquipmentField[] potionField;
 
-    public EquipmentField swordSelected;
-    public EquipmentField bowSelected;
-    public EquipmentField shieldSelected;
-    public EquipmentField potionSelected;
+    // public EquipmentField swordSelected;
+    // public EquipmentField bowSelected;
+    // public EquipmentField shieldSelected;
+    // public EquipmentField potionSelected;
+
+    [SerializeField]
+    private SelectedEquipments selectedEquipments;
 
     [SerializeField]
     private MouseFollower mouseFollower;
@@ -102,7 +105,7 @@ public class EquipmentManager : MonoBehaviour
             targetField.InsertEquipment(sourceField.equipmentData); //campo destino recebe dados do seguidor do mouse
             sourceField.InsertEquipment(tempData); //campo orifem recebe dados do destino
         }
-        else if(sourceField == swordSelected || sourceField == bowSelected || sourceField == shieldSelected || sourceField == potionSelected) return;
+        else if(sourceField == selectedEquipments.swordSelected || sourceField == selectedEquipments.bowSelected || sourceField == selectedEquipments.shieldSelected || sourceField == selectedEquipments.potionSelected) return;
         else // se não houver o campo apenas recebe os dados do original
         {
             targetField.InsertEquipment(sourceField.equipmentData); //insere o capo origem no campo destino
@@ -135,9 +138,9 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetSword(EquipmentData equipmentData)
     {
-        if(swordSelected.equipmentName == ""){
+        if(selectedEquipments.swordSelected.equipmentName == ""){
             // Debug.Log(equipmentData.equipmentCategory);
-            swordSelected.InsertEquipment(equipmentData);
+            selectedEquipments.swordSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
@@ -153,8 +156,8 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetBow(EquipmentData equipmentData)
     {
-        if(bowSelected.equipmentName == ""){
-            bowSelected.InsertEquipment(equipmentData);
+        if(selectedEquipments.bowSelected.equipmentName == ""){
+            selectedEquipments.bowSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
@@ -170,8 +173,8 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetShield(EquipmentData equipmentData)
     {
-        if(shieldSelected.equipmentName == ""){
-            shieldSelected.InsertEquipment(equipmentData);
+        if(selectedEquipments.shieldSelected.equipmentName == ""){
+            selectedEquipments.shieldSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < shieldField.Length; i++)
@@ -187,8 +190,8 @@ public class EquipmentManager : MonoBehaviour
 
     private void SetPotion(EquipmentData equipmentData)
     {
-        if(potionSelected.equipmentName == ""){
-            potionSelected.InsertEquipment(equipmentData);
+        if(selectedEquipments.potionSelected.equipmentName == ""){
+            selectedEquipments.potionSelected.InsertEquipment(equipmentData);
         }
         else{
             for(int i = 0; i < potionField.Length; i++)
