@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
+
+
     public GameObject EquipmentMenu;
 
     public EquipmentField[] allFields;
@@ -23,23 +25,27 @@ public class EquipmentManager : MonoBehaviour
 
     [SerializeField]
     private MouseFollower mouseFollower;
+
+    private PlayerController playerController;
     
     private bool isActive;
 
     private void Start() 
     {
+        playerController = FindObjectOfType<PlayerController>();
         MouseEvents();
-        // mouseFollower.Toggle(false);
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && isActive){
             Deselect();
+            PlayerController.state = PLAYER.FREE;
             EquipmentMenu.SetActive(false);
             isActive = false;
         }
         else if(Input.GetKeyDown(KeyCode.R) && !isActive){
+            PlayerController.state = PLAYER.INTERACT;
             EquipmentMenu.SetActive(true);
             isActive = true;
         }
@@ -97,7 +103,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void HandleSwap(EquipmentField targetField)
     {
-        if(targetField == null || mouseFollower.currentEquipment == null || targetField.equipmentCategory != mouseFollower.currentEquipment.equipmentCategory) return; //verifica se é nulo, se a categoria é correta e se o equipamento selecionado está preenchido
+        if(targetField == null || mouseFollower.currentEquipment == null || targetField.equipmentCategory !=            mouseFollower.currentEquipment.equipmentCategory) return; //verifica se é nulo, se a categoria é correta e se o equipamento selecionado está preenchido
         EquipmentField sourceField = FindSourceField(mouseFollower.currentEquipment); //variável referente ao campo origem
         if(targetField.isFilled) //verifica se há item no campo destino
         {
