@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentName: Espada de Mestor
   image: {fileID: 21300000, guid: e18ead5896b0c154e8ec1b1bb2eca3d5, type: 3}
+  imageSelected: {fileID: 21300000, guid: f76733ee70e180e48894e491025abe0c, type: 3}
   description: "Espada antiga pesada com alto n\xEDvel cortante"
   equipmentCategory: 0

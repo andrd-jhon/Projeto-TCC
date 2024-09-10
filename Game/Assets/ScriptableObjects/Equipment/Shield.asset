@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentName: Escudo ...
   image: {fileID: 21300000, guid: 7d789b6bb92cc874fb27601dc68c2839, type: 3}
+  imageSelected: {fileID: 21300000, guid: 462cb3f7af8818d43b7c0e03305db037, type: 3}
   description: Escudo de madeira comum
   equipmentCategory: 2

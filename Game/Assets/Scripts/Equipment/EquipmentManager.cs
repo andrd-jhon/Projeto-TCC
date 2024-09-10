@@ -8,17 +8,7 @@ public class EquipmentManager : MonoBehaviour
 
     public GameObject EquipmentMenu;
 
-    public EquipmentField[] allFields;
-
-    public EquipmentField[] swordField;
-    public EquipmentField[] bowField;
-    public EquipmentField[] shieldField;
-    public EquipmentField[] potionField;
-
-    // public EquipmentField swordSelected;
-    // public EquipmentField bowSelected;
-    // public EquipmentField shieldSelected;
-    // public EquipmentField potionSelected;
+    public EquipmentField[] allFields, swordField, bowField, shieldField, potionField;
 
     [SerializeField]
     private SelectedEquipments selectedEquipments;
@@ -109,8 +99,16 @@ public class EquipmentManager : MonoBehaviour
         {
             EquipmentData tempData = targetField.equipmentData; //cria variável temporária com dados do campo destino
             targetField.InsertEquipment(sourceField.equipmentData); //campo destino recebe dados do seguidor do mouse
-            sourceField.InsertEquipment(tempData); //campo orifem recebe dados do destino
-        }
+
+            if(sourceField == selectedEquipments.swordSelected || sourceField == selectedEquipments.bowSelected || sourceField == selectedEquipments.shieldSelected || sourceField == selectedEquipments.potionSelected){
+                selectedEquipments.SetSelected(tempData);
+            }
+            if(targetField == selectedEquipments.swordSelected || targetField == selectedEquipments.bowSelected || targetField == selectedEquipments.shieldSelected || targetField == selectedEquipments.potionSelected){
+                selectedEquipments.SetSelected(sourceField.equipmentData);
+            }
+            sourceField.InsertEquipment(tempData);
+
+        }//campo origem recebe dados do destino
         else if(sourceField == selectedEquipments.swordSelected || sourceField == selectedEquipments.bowSelected || sourceField == selectedEquipments.shieldSelected || sourceField == selectedEquipments.potionSelected) return;
         else // se não houver o campo apenas recebe os dados do original
         {
@@ -147,6 +145,7 @@ public class EquipmentManager : MonoBehaviour
         if(selectedEquipments.swordSelected.equipmentName == ""){
             // Debug.Log(equipmentData.equipmentCategory);
             selectedEquipments.swordSelected.InsertEquipment(equipmentData);
+            selectedEquipments.SetSelected(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
@@ -164,6 +163,7 @@ public class EquipmentManager : MonoBehaviour
     {
         if(selectedEquipments.bowSelected.equipmentName == ""){
             selectedEquipments.bowSelected.InsertEquipment(equipmentData);
+            selectedEquipments.SetSelected(equipmentData);
         }
         else{
             for(int i = 0; i < swordField.Length; i++)
@@ -181,6 +181,7 @@ public class EquipmentManager : MonoBehaviour
     {
         if(selectedEquipments.shieldSelected.equipmentName == ""){
             selectedEquipments.shieldSelected.InsertEquipment(equipmentData);
+            selectedEquipments.SetSelected(equipmentData);
         }
         else{
             for(int i = 0; i < shieldField.Length; i++)
@@ -198,6 +199,7 @@ public class EquipmentManager : MonoBehaviour
     {
         if(selectedEquipments.potionSelected.equipmentName == ""){
             selectedEquipments.potionSelected.InsertEquipment(equipmentData);
+            selectedEquipments.SetSelected(equipmentData);
         }
         else{
             for(int i = 0; i < potionField.Length; i++)

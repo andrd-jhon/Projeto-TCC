@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentName: Arco Douro
   image: {fileID: 21300000, guid: 3a1fc6d4aafea644f9b8246c2e21c317, type: 3}
+  imageSelected: {fileID: 21300000, guid: 27b032fe253b25d4aa7d435243667d37, type: 3}
   description: "Arco leve de f\xE1cil manuseio"
   equipmentCategory: 1

@@ -8,6 +8,7 @@ using UnityEngine;
     
     public string equipmentName;
     public Sprite image;
+    public Sprite imageSelected;
 
     [TextArea]
     public string description;
