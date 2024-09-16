@@ -5,10 +5,19 @@ using UnityEngine;
 
 public class SelectedEquipments : MonoBehaviour
 {
+    EquipmentManager equipmentManager;
+
+    public Coroutine changeWeaponCoroutine;
+
     public EquipmentField swordSelected, bowSelected, shieldSelected, potionSelected;
 
     [SerializeField]
-    private Image swordImage, bowImage, shieldImage, potionImage;
+    public Image swordImage, bowImage, shieldImage, potionImage;
+
+    private void Awake()
+    {
+        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+    }
 
     public void SetSelected(EquipmentData equipmentData)
     {  
@@ -31,15 +40,38 @@ public class SelectedEquipments : MonoBehaviour
                 potionImage.sprite = equipmentData.imageSelected;
                 break;
         }
+    }
 
-        // if(swordSprite == null) swordImage.enabled = false;
-        // if(bowSprite == null) swordImage.enabled = false;
-        // if(shieldSprite == null) swordImage.enabled = false;
-        // if(potionSprite == null) swordImage.enabled = false;
+    public IEnumerator ChangeWeapon(){
+        while(equipmentManager.isActive){
+            ShowSword();
+            yield return new WaitForSeconds(2f);
+            ShowBow();
+            yield return new WaitForSeconds(2f);
+        }
+        yield return null;
+    }
 
-        // swordImage.sprite = swordSprite;
-        // bowImage.sprite = bowSprite;
-        // shieldImage.sprite = shieldSprite;
-        // potionImage.sprite = potionSprite;
+    private void ShowBow(){
+        bowImage.enabled = true;
+        swordImage.enabled = false;
+    }
+    
+    private void ShowSword(){
+        swordImage.enabled = true;
+        bowImage.enabled = false;
+    }
+
+    public void StartChangeWeaponCoroutine(){
+        if (changeWeaponCoroutine == null){
+            changeWeaponCoroutine = StartCoroutine(ChangeWeapon());
+        }
+    }
+
+    public void StopChangeWeaponCoroutine(){
+        if (changeWeaponCoroutine != null){
+            StopCoroutine(changeWeaponCoroutine);
+            changeWeaponCoroutine = null;
+        }
     }
 }

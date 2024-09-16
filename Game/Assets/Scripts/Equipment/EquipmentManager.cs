@@ -18,7 +18,7 @@ public class EquipmentManager : MonoBehaviour
 
     private PlayerController playerController;
     
-    private bool isActive;
+    public bool isActive;
 
     private void Start() 
     {
@@ -33,11 +33,15 @@ public class EquipmentManager : MonoBehaviour
             PlayerController.state = PLAYER.FREE;
             EquipmentMenu.SetActive(false);
             isActive = false;
+            selectedEquipments.StopChangeWeaponCoroutine();
         }
         else if(Input.GetKeyDown(KeyCode.R) && !isActive){
             PlayerController.state = PLAYER.INTERACT;
             EquipmentMenu.SetActive(true);
             isActive = true;
+            if (selectedEquipments.swordSelected.equipmentData != null && selectedEquipments.bowSelected.equipmentData != null){
+            selectedEquipments.StartChangeWeaponCoroutine();
+            }
         }
         
     }
