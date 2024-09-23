@@ -9,9 +9,7 @@ public class PopUpManager : MonoBehaviour
     public GameObject interface1;
     public GameObject interface2;
 
-    public GameObject slot;
-    public Transform parentTransformToFill;
-    public Transform parentTransformFillable;
+    [SerializeField] private PopUpOrder popUpOrder;
 
     public List<StepSlot> allStepSlot = new List<StepSlot>();
 
@@ -20,22 +18,14 @@ public class PopUpManager : MonoBehaviour
     [SerializeField] MouseFollowerPopUp mouseFollowerPopUp;
     private StepSlot originSlotStep;
 
-    public PopUpData popUpData;
-
     [SerializeField] private TMP_Text mechanicName;
     [SerializeField] private Image imageMechanic;
     [SerializeField] private TMP_Text description;
 
     private bool isActive;
 
-    private void Awake() {
-        // playerController = FindObjectOfType<PlayerController>();
-    }
-
     private void Start()
     {
-        AddSlotsToFill();
-        AddSlotsFillable();
         SetData();
         MouseEvents();
     }
@@ -75,53 +65,22 @@ public class PopUpManager : MonoBehaviour
 
     private void SetData()
     {
-        mechanicName.text = popUpData.mechanicName;
-        imageMechanic.sprite = popUpData.mechanicView;
-        description.text = popUpData.mechanicDescription;
-    }
-
-    private void AddSlotsToFill()
-    {
-        int number = 0;
-
-        foreach (Step step in popUpData.stepsQuantity)
-        {
-            GameObject instantiatedObject = Instantiate(slot, parentTransformToFill);
-            StepSlot stepSlot = instantiatedObject.GetComponent<StepSlot>();
-            allStepSlot.Add(stepSlot);
-            // stepSlot.imageFill.enabled = true;
-            stepSlot.show.SetActive(true);
-            stepSlot.stepText.text = step.stepText;
-            stepSlot.name = "StepToFill" + number.ToString();
-            number++;
-        }
-    }
-    private void AddSlotsFillable()
-    {
-        int number = 0;
-
-        foreach (Step step in popUpData.stepsQuantity)
-        {
-            GameObject instantiatedObject = Instantiate(slot, parentTransformFillable);
-            StepSlot stepSlot = instantiatedObject.GetComponent<StepSlot>();
-            allStepSlot.Add(stepSlot);
-            stepSlot.name = "StepFillable" + number.ToString();
-            number++;
-
-        }
+        mechanicName.text = popUpOrder.popUpData.mechanicName;
+        imageMechanic.sprite = popUpOrder.popUpData.mechanicView;
+        description.text = popUpOrder.popUpData.mechanicDescription;
     }
 
     private void HandleBeginDrag(StepSlot obj)
     {
-        Debug.Log("SEGURANDO");
+        if(obj.isFilled){
         mouseFollowerPopUp.Toggle(true);
         mouseFollowerPopUp.SetData(obj.stepText.text);
         originSlotStep = obj;
+        }else return;
     }
 
     private void HandleSwap(StepSlot targetSlotStep)
     {
-        Debug.Log("DROPANDO");
         if(targetSlotStep == null || mouseFollowerPopUp.currentStepText == "") return;
         if(targetSlotStep.isFilled)
         {
@@ -133,11 +92,12 @@ public class PopUpManager : MonoBehaviour
             targetSlotStep.InsertStep(originSlotStep.stepText.text);
             originSlotStep.RemoveStep();
         }
+        popUpOrder.stepsFillable.Clear();
+        popUpOrder.GetFillables();
     }
 
     private void HandleEndDrag(StepSlot obj)
     {
-        Debug.Log("SOLTANDO");
         mouseFollowerPopUp.Toggle(false);
     }
 

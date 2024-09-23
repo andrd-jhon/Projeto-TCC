@@ -1064,6 +1064,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 805640415479735734, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
+      propertyPath: m_Color.a
+      value: 0.49803922
+      objectReference: {fileID: 0}
     - target: {fileID: 2889253184660578907, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_Name
       value: StepSlot
@@ -6212,6 +6216,7 @@ GameObject:
   - component: {fileID: 1615982440}
   - component: {fileID: 1615982439}
   - component: {fileID: 1615982443}
+  - component: {fileID: 1615982444}
   m_Layer: 5
   m_Name: Pop-up (1)
   m_TagString: Untagged
@@ -6316,16 +6321,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interface1: {fileID: 1576158078}
   interface2: {fileID: 1684481346}
-  slot: {fileID: 2889253184660578907, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
-  parentTransformToFill: {fileID: 1797561779}
-  parentTransformFillable: {fileID: 868716910}
+  popUpOrder: {fileID: 1615982444}
   allStepSlot: []
   PopUpUI: {fileID: 482083655}
   mouseFollowerPopUp: {fileID: 578032413}
-  popUpData: {fileID: 11400000, guid: e14e6460039ceb841b7b9e102ec45f7c, type: 2}
   mechanicName: {fileID: 1072089274}
   imageMechanic: {fileID: 608761884}
   description: {fileID: 802319125}
+--- !u!114 &1615982444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615982438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00cfd97fb53190b478deabe47fc9996a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepsFillable: []
+  popUpData: {fileID: 11400000, guid: e14e6460039ceb841b7b9e102ec45f7c, type: 2}
+  slot: {fileID: 2889253184660578907, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
+  parentTransformToFill: {fileID: 1797561779}
+  parentTransformFillable: {fileID: 868716910}
+  popUpManager: {fileID: 1615982443}
+  correctOrderSteps: []
 --- !u!1 &1616159654
 GameObject:
   m_ObjectHideFlags: 0

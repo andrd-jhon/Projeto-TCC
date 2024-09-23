@@ -13,8 +13,6 @@ public class StepSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHan
     public TMP_Text stepText;
     public bool isFilled;
 
-    // private string text; 
-
     public event Action<StepSlot> OnStepDrop, OnStepBeginDrag, OnStepEndDrag;
 
 
@@ -39,7 +37,6 @@ public class StepSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHan
     }
 
     public void OnDrop(PointerEventData eventData){
-        // Debug.Log("ALFKJNAJN");
         OnStepDrop?.Invoke(this);
     }
 

@@ -9,9 +9,12 @@ using UnityEngine;
         public Sprite mechanicView;
         public string mechanicDescription;
         public List<Step> stepsQuantity;
+        // public List<string> testeString = new List<string>();
     }
 
     [Serializable] public struct Step{
 
     public string stepText;
 }
+
+//apartir
