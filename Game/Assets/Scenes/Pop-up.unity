@@ -850,6 +850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 578032412}
+  - component: {fileID: 578032413}
   m_Layer: 5
   m_Name: MouseFollower
   m_TagString: Untagged
@@ -877,6 +878,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &578032413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578032411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b025379bb6c9346bc239f9b8390a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  stepSlot: {fileID: 635344124}
+  currentStepText: 
 --- !u!1 &608761882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889253184660578907, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_Pivot.x
@@ -1136,6 +1152,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8493883242580190689, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
+      propertyPath: m_Color.a
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493883242580190689, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1146,6 +1170,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
   m_PrefabInstance: {fileID: 635344122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &635344124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 29336264687844415, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
+  m_PrefabInstance: {fileID: 635344122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dc70dc4687c74f81be1c85e495863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &733985888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,7 +1835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc12673d3cb85e44a1283dd0cad3b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: 
 --- !u!114 &1098001114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6287,6 +6321,7 @@ MonoBehaviour:
   parentTransformFillable: {fileID: 868716910}
   allStepSlot: []
   PopUpUI: {fileID: 482083655}
+  mouseFollowerPopUp: {fileID: 578032413}
   popUpData: {fileID: 11400000, guid: e14e6460039ceb841b7b9e102ec45f7c, type: 2}
   mechanicName: {fileID: 1072089274}
   imageMechanic: {fileID: 608761884}

@@ -97,7 +97,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void HandleSwap(EquipmentField targetField)
     {
-        if(targetField == null || mouseFollower.currentEquipment == null || targetField.equipmentCategory !=            mouseFollower.currentEquipment.equipmentCategory) return; //verifica se é nulo, se a categoria é correta e se o equipamento selecionado está preenchido
+        if(targetField == null || mouseFollower.currentEquipment == null || targetField.equipmentCategory != mouseFollower.currentEquipment.equipmentCategory) return; //verifica se é nulo, se a categoria é correta e se o equipamento selecionado está preenchido
         EquipmentField sourceField = FindSourceField(mouseFollower.currentEquipment); //variável referente ao campo origem
         if(targetField.isFilled) //verifica se há item no campo destino
         {

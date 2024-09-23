@@ -11,18 +11,21 @@ public class StepSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHan
     public GameObject show;
     public Image imageFill;
     public TMP_Text stepText;
+    public bool isFilled;
 
-    private string text; 
+    // private string text; 
 
     public event Action<StepSlot> OnStepDrop, OnStepBeginDrag, OnStepEndDrag;
 
 
-    public void InsertData(Step stepData){
-        stepText.text = stepData.stepText;
+    public void InsertStep(string text){
+        isFilled = true;
+        stepText.text = text;
         show.SetActive(true);
     }
 
     public void RemoveStep(){
+        isFilled = false;
         show.SetActive(false);
         stepText.text = "";
     }
@@ -32,11 +35,11 @@ public class StepSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHan
     }
 
     public void OnBeginDrag(PointerEventData eventData){
-        Debug.Log("COMEÇANDO A SEGURAR");
         OnStepBeginDrag?.Invoke(this);
     }
 
     public void OnDrop(PointerEventData eventData){
+        // Debug.Log("ALFKJNAJN");
         OnStepDrop?.Invoke(this);
     }
 

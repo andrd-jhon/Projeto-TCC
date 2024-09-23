@@ -1,51 +1,55 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class MouseFollowerPopUp : MonoBehaviour
-// {
-//     [SerializeField]
-//     private Canvas canvas;
+public class MouseFollowerPopUp : MonoBehaviour
+{
+    [SerializeField]
+    private Canvas canvas;
 
-//     public StepSlot stepSlot;
+    public StepSlot stepSlot;
 
-//     public Step currentStep;
+    // public PopUpData currentStep;
 
-//     private void Awake()
-//     {
-//         stepSlot = GetComponentInChildren<StepSlot>();
-//     }
+    public string currentStepText;
 
-//     public void SetData(Step step)
-//     {
-//         StepSlot.InsertStep(step);
-//         currentStep = equipmentData;
-//     }
+    private void Awake()
+    {
+        canvas = transform.root.GetComponent<Canvas>();
+        stepSlot = GetComponentInChildren<StepSlot>();
+    }
 
-//     public void ClearData()
-//     {
-//         stepSlot.RemoveEquipment();
-//         currentStep = "";
-//     }
+    public void SetData(string text)
+    {
+        stepSlot.InsertStep(text);
+        currentStepText = text;
 
-//     void Update()
-//     {
-//         Vector2 position;
-//         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-//             (RectTransform)canvas.transform,
-//             Input.mousePosition,
-//             canvas.worldCamera,
-//             out position
-//                 );
-//         transform.position = canvas.transform.TransformPoint(position);
-//     }
+    }
 
-//     public void Toggle(bool val)
-//     {
-//         gameObject.SetActive(val);
-//         if (!val)
-//         {
-//             ClearData();
-//         }
-//     }
-// }
+    public void ClearData()
+    {
+        stepSlot.RemoveStep();
+        currentStepText = "";
+    }
+
+    void Update()
+    {
+        Vector2 position;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)canvas.transform,
+            Input.mousePosition,
+            canvas.worldCamera,
+            out position
+                );
+        transform.position = canvas.transform.TransformPoint(position);
+    }
+
+    public void Toggle(bool val)
+    {
+        gameObject.SetActive(val);
+        if (!val)
+        {
+            ClearData();
+        }
+    }
+}

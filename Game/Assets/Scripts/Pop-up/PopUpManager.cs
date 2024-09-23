@@ -9,15 +9,16 @@ public class PopUpManager : MonoBehaviour
     public GameObject interface1;
     public GameObject interface2;
 
-
     public GameObject slot;
     public Transform parentTransformToFill;
     public Transform parentTransformFillable;
 
     public List<StepSlot> allStepSlot = new List<StepSlot>();
 
-    [SerializeField]
-    private GameObject PopUpUI;
+    [SerializeField] private GameObject PopUpUI;
+
+    [SerializeField] MouseFollowerPopUp mouseFollowerPopUp;
+    private StepSlot originSlotStep;
 
     public PopUpData popUpData;
 
@@ -25,12 +26,10 @@ public class PopUpManager : MonoBehaviour
     [SerializeField] private Image imageMechanic;
     [SerializeField] private TMP_Text description;
 
-    private PlayerController playerController;
-
     private bool isActive;
 
     private void Awake() {
-        playerController = FindObjectOfType<PlayerController>();
+        // playerController = FindObjectOfType<PlayerController>();
     }
 
     private void Start()
@@ -83,6 +82,8 @@ public class PopUpManager : MonoBehaviour
 
     private void AddSlotsToFill()
     {
+        int number = 0;
+
         foreach (Step step in popUpData.stepsQuantity)
         {
             GameObject instantiatedObject = Instantiate(slot, parentTransformToFill);
@@ -91,30 +92,53 @@ public class PopUpManager : MonoBehaviour
             // stepSlot.imageFill.enabled = true;
             stepSlot.show.SetActive(true);
             stepSlot.stepText.text = step.stepText;
+            stepSlot.name = "StepToFill" + number.ToString();
+            number++;
         }
     }
     private void AddSlotsFillable()
     {
+        int number = 0;
+
         foreach (Step step in popUpData.stepsQuantity)
         {
             GameObject instantiatedObject = Instantiate(slot, parentTransformFillable);
-            // StepSlot stepSlot = instantiatedObject.GetComponent<StepSlot>();
+            StepSlot stepSlot = instantiatedObject.GetComponent<StepSlot>();
+            allStepSlot.Add(stepSlot);
+            stepSlot.name = "StepFillable" + number.ToString();
+            number++;
+
         }
     }
 
     private void HandleBeginDrag(StepSlot obj)
     {
         Debug.Log("SEGURANDO");
+        mouseFollowerPopUp.Toggle(true);
+        mouseFollowerPopUp.SetData(obj.stepText.text);
+        originSlotStep = obj;
     }
 
-    private void HandleSwap(StepSlot obj)
+    private void HandleSwap(StepSlot targetSlotStep)
     {
-        
+        Debug.Log("DROPANDO");
+        if(targetSlotStep == null || mouseFollowerPopUp.currentStepText == "") return;
+        if(targetSlotStep.isFilled)
+        {
+            string tempTargetSlotStep = targetSlotStep.stepText.text;
+            targetSlotStep.InsertStep(originSlotStep.stepText.text);
+            originSlotStep.InsertStep(tempTargetSlotStep);
+        }else
+        {
+            targetSlotStep.InsertStep(originSlotStep.stepText.text);
+            originSlotStep.RemoveStep();
+        }
     }
 
     private void HandleEndDrag(StepSlot obj)
     {
         Debug.Log("SOLTANDO");
+        mouseFollowerPopUp.Toggle(false);
     }
 
     private void ChangeInterfaceTo2(){
