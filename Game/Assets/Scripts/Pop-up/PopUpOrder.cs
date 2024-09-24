@@ -12,6 +12,9 @@ public class PopUpOrder : MonoBehaviour
     public Transform parentTransformFillable;
     [SerializeField] private PopUpManager popUpManager;
 
+    public StepSlot[] stepSlotsFillable; //ADICIONADO AGORA
+    public StepSlot[] stepSlotsToFill;
+
     public List<string> correctOrderSteps = new List<string>();
 
     private bool isEqual;
@@ -29,6 +32,11 @@ public class PopUpOrder : MonoBehaviour
 
     private void Start() {
         SetCorrectOrder();
+        stepSlotsFillable = parentTransformFillable.GetComponentsInChildren<StepSlot>();
+        stepSlotsToFill = parentTransformToFill.GetComponentsInChildren<StepSlot>();
+
+        // GetSlotStep(ref stepSlotsFillable, parentTransformFillable);
+        // GetSlotStep(ref stepSlotsToFill, parentTransformFillable);
     }
 
     private void AddSlotsToFill()
@@ -71,9 +79,8 @@ public class PopUpOrder : MonoBehaviour
         }
     }
 
-    public void GetFillables(){
-        StepSlot[] stepSlots = parentTransformFillable.GetComponentsInChildren<StepSlot>();
-        foreach (StepSlot slot in stepSlots)
+    public void GetSlotStep(){
+        foreach (StepSlot slot in stepSlotsFillable)
         {
             stepsFillable.Add(slot.stepText.text);
         }
@@ -82,11 +89,26 @@ public class PopUpOrder : MonoBehaviour
     public void Verify()
     {
         isEqual = stepsFillable.SequenceEqual(correctOrderSteps);
-        if(isEqual){
-            Debug.Log("ESTÁ IGUALZINHO");
-        }else{
-            Debug.Log("ta diferente bro");
+    
+        if (isEqual){
+            Debug.Log("ORDEM CORRETA");
+            return;
         }
-    } 
+    
+        Debug.Log("ORDEM ICORRETA");
 
+        for (int i = 0; i < stepsFillable.Count; i++)
+        {
+            if (i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
+            {
+                Debug.Log(stepSlotsFillable[i].stepText.text);
+                StepSlot availableSlot = stepSlotsToFill.FirstOrDefault(slot => !slot.isFilled);
+                if (availableSlot != null)
+                {
+                    availableSlot.InsertStep(stepsFillable[i]);
+                    stepSlotsFillable[i].RemoveStep();
+                }
+            }
+        }
+    }
 }

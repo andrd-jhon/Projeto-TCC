@@ -6,8 +6,8 @@ using TMPro;
 
 public class PopUpManager : MonoBehaviour
 {
-    public GameObject interface1;
-    public GameObject interface2;
+    [SerializeField] private GameObject interface1;
+    [SerializeField] private GameObject interface2;
 
     [SerializeField] private PopUpOrder popUpOrder;
 
@@ -93,7 +93,7 @@ public class PopUpManager : MonoBehaviour
             originSlotStep.RemoveStep();
         }
         popUpOrder.stepsFillable.Clear();
-        popUpOrder.GetFillables();
+        popUpOrder.GetSlotStep();
     }
 
     private void HandleEndDrag(StepSlot obj)
