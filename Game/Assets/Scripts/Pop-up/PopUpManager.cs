@@ -43,14 +43,6 @@ public class PopUpManager : MonoBehaviour
             PopUpUI.SetActive(true);
             isActive = true;
         }
-        
-        if(Input.GetKeyDown(KeyCode.D) && isActive){
-            ChangeInterfaceTo2();
-        }
-        if(Input.GetKeyDown(KeyCode.A) && isActive){
-            ChangeInterfaceTo1();
-        }
-
     }
 
     private void MouseEvents()
@@ -101,11 +93,11 @@ public class PopUpManager : MonoBehaviour
         mouseFollowerPopUp.Toggle(false);
     }
 
-    private void ChangeInterfaceTo2(){
+    public void ChangeInterfaceTo2(){
         interface1.SetActive(false);
         interface2.SetActive(true);
     }
-    private void ChangeInterfaceTo1(){
+    public void ChangeInterfaceTo1(){
         interface2.SetActive(false);
         interface1.SetActive(true);
     }

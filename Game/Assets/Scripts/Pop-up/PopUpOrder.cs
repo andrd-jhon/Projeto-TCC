@@ -12,7 +12,7 @@ public class PopUpOrder : MonoBehaviour
     public Transform parentTransformFillable;
     [SerializeField] private PopUpManager popUpManager;
 
-    public StepSlot[] stepSlotsFillable; //ADICIONADO AGORA
+    public StepSlot[] stepSlotsFillable;
     public StepSlot[] stepSlotsToFill;
 
     public List<string> correctOrderSteps = new List<string>();
@@ -34,16 +34,16 @@ public class PopUpOrder : MonoBehaviour
         SetCorrectOrder();
         stepSlotsFillable = parentTransformFillable.GetComponentsInChildren<StepSlot>();
         stepSlotsToFill = parentTransformToFill.GetComponentsInChildren<StepSlot>();
-
-        // GetSlotStep(ref stepSlotsFillable, parentTransformFillable);
-        // GetSlotStep(ref stepSlotsToFill, parentTransformFillable);
     }
 
     private void AddSlotsToFill()
     {
         int number = 0;
 
-        foreach (Step step in popUpData.stepsQuantity)
+        List<Step> shuffledSteps = new List<Step>(popUpData.stepsQuantity);
+        Shuffle(shuffledSteps);
+
+        foreach (Step step in shuffledSteps)
         {
             GameObject instantiatedObject = Instantiate(slot, parentTransformToFill);
             StepSlot stepSlot = instantiatedObject.GetComponent<StepSlot>();
@@ -54,7 +54,17 @@ public class PopUpOrder : MonoBehaviour
             stepSlot.name = "StepToFill" + number.ToString();
             number++;
         }
-        number = 0;
+    }
+
+    private void Shuffle(List<Step> list)
+    {
+        for(int i=0; i<list.Count; i++)
+        {
+            int randomIndex = Random.Range(i, list.Count);
+            Step temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 
     private void AddSlotsFillable()
