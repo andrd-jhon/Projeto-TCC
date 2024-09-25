@@ -9,12 +9,23 @@ using UnityEngine;
         public Sprite mechanicView;
         public string mechanicDescription;
         public List<Step> stepsQuantity;
+        public int totalReward;
+        public int secondReward;
+        public int thirdReward;
+        public int fourthReward;
         // public List<string> testeString = new List<string>();
     }
 
     [Serializable] public struct Step{
 
-    public string stepText;
+        public string stepText;
 }
+
+    // [Serializable] public struct Reward{
+    //     public int totalReward;
+    //     public int secondReward;
+    //     public int thirdReward;
+    //     public int fourthReward;
+    // }
 
 //apartir

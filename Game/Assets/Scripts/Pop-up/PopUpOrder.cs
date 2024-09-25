@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class PopUpOrder : MonoBehaviour
@@ -11,13 +12,21 @@ public class PopUpOrder : MonoBehaviour
     public Transform parentTransformToFill;
     public Transform parentTransformFillable;
     [SerializeField] private PopUpManager popUpManager;
+    [SerializeField] private GameObject checkButton;
 
-    public StepSlot[] stepSlotsFillable;
-    public StepSlot[] stepSlotsToFill;
+    private StepSlot[] stepSlotsFillable;
+    private StepSlot[] stepSlotsToFill;
 
-    public List<string> correctOrderSteps = new List<string>();
+    [SerializeField] private Image attempt1;
+    [SerializeField] private Image attempt2;
+    [SerializeField] private Image attempt3;
+    private int attemptNumber;
+    public int reward;
+
+    private List<string> correctOrderSteps = new List<string>();
 
     private bool isEqual;
+    private bool verifiable = false;
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.V)){
@@ -26,14 +35,16 @@ public class PopUpOrder : MonoBehaviour
     }
 
     private void Awake() {
-        AddSlotsToFill();
-        AddSlotsFillable();
+        AddSlotsToFill(); //da pra unir esse
+        AddSlotsFillable(); //e esse
+        SetCorrectOrder();
     }
 
     private void Start() {
-        SetCorrectOrder();
+        
         stepSlotsFillable = parentTransformFillable.GetComponentsInChildren<StepSlot>();
         stepSlotsToFill = parentTransformToFill.GetComponentsInChildren<StepSlot>();
+        reward = popUpData.totalReward;
     }
 
     private void AddSlotsToFill()
@@ -89,36 +100,70 @@ public class PopUpOrder : MonoBehaviour
         }
     }
 
-    public void GetSlotStep(){
+    public void UpdateSlotStep(){
         foreach (StepSlot slot in stepSlotsFillable)
         {
             stepsFillable.Add(slot.stepText.text);
         }
     }
 
+    public void ButtonUpdate(){
+        foreach (StepSlot slot in stepSlotsFillable)
+        {
+            if(!slot.isFilled)
+            {
+                checkButton.SetActive(false);
+                break;
+            }
+            checkButton.SetActive(true);
+        }
+    }
+
     public void Verify()
     {
         isEqual = stepsFillable.SequenceEqual(correctOrderSteps);
-    
         if (isEqual){
-            Debug.Log("ORDEM CORRETA");
-            return;
+            Debug.Log("ORDEM CORRETA! voce ganhou " + reward + " de recompensa");
         }
-    
-        Debug.Log("ORDEM ICORRETA");
-
-        for (int i = 0; i < stepsFillable.Count; i++)
+        else
         {
-            if (i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
+            Debug.Log("ORDEM ICORRETA");
+            attemptNumber++;
+            for(int i = 0; i < stepsFillable.Count; i++)
             {
-                Debug.Log(stepSlotsFillable[i].stepText.text);
-                StepSlot availableSlot = stepSlotsToFill.FirstOrDefault(slot => !slot.isFilled);
-                if (availableSlot != null)
+                if(i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
                 {
-                    availableSlot.InsertStep(stepsFillable[i]);
-                    stepSlotsFillable[i].RemoveStep();
+                    Debug.Log(stepSlotsFillable[i].stepText.text);
+                    StepSlot availableSlot = stepSlotsToFill.FirstOrDefault(slot => !slot.isFilled);
+                    if (availableSlot != null)
+                    {
+                        availableSlot.InsertStep(stepsFillable[i]);
+                        stepSlotsFillable[i].RemoveStep();
+                    }
                 }
             }
         }
+        checkButton.SetActive(false);
+        SetReward();
+    }
+
+    private void SetReward()
+    {
+        switch (attemptNumber)
+            {
+                case 0:
+                    reward = popUpData.totalReward;
+                    break;
+                case 1:
+                    reward = popUpData.secondReward;
+                    break;
+                case 2:
+                    reward = popUpData.thirdReward;
+                    break;
+                case 3:
+                    reward = popUpData.fourthReward;
+                    Debug.Log("Não foi dessa vez. Ganhou " + reward + " de recompensa");
+                    break;
+            }
     }
 }

@@ -85,12 +85,13 @@ public class PopUpManager : MonoBehaviour
             originSlotStep.RemoveStep();
         }
         popUpOrder.stepsFillable.Clear();
-        popUpOrder.GetSlotStep();
     }
 
     private void HandleEndDrag(StepSlot obj)
     {
         mouseFollowerPopUp.Toggle(false);
+        popUpOrder.UpdateSlotStep();
+        popUpOrder.ButtonUpdate();
     }
 
     public void ChangeInterfaceTo2(){
