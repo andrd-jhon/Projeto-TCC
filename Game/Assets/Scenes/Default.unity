@@ -858,7 +858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3253d23ab0d4334795414997f7247f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teste: 23
+  fadeImage: {fileID: 0}
+  transparentColor: {r: 0, g: 0, b: 0, a: 0}
   outDuration: 1.5
   inDuration: 1.5
 --- !u!1 &297014455
@@ -19443,7 +19444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAsync: 0
-  namePlace: InsideSomething
+  namePlace: Pop-up
 --- !u!1001 &2121768027
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class FadeComponent : MonoBehaviour
 {
-    Image fadeImage;
+    public Image fadeImage;
     Color color;
-    Color transparentColor;
-
-    public float teste = 23f;
+    public Color transparentColor;
 
     [Range(0, 5)]
     [SerializeField] float outDuration = 1.5f;

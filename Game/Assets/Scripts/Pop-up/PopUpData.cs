@@ -7,25 +7,17 @@ using UnityEngine;
     public class PopUpData : ScriptableObject {
         public string mechanicName;
         public Sprite mechanicView;
-        public string mechanicDescription;
+
+        [TextArea] public string mechanicDescription;
         public List<Step> stepsQuantity;
         public int totalReward;
         public int secondReward;
         public int thirdReward;
         public int fourthReward;
-        // public List<string> testeString = new List<string>();
+        [TextArea] public string mechanicExplanation;
     }
 
     [Serializable] public struct Step{
 
         public string stepText;
 }
-
-    // [Serializable] public struct Reward{
-    //     public int totalReward;
-    //     public int secondReward;
-    //     public int thirdReward;
-    //     public int fourthReward;
-    // }
-
-//apartir

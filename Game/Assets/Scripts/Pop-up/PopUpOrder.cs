@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
+using TMPro;
 
 public class PopUpOrder : MonoBehaviour
 {
@@ -12,7 +14,12 @@ public class PopUpOrder : MonoBehaviour
     public Transform parentTransformToFill;
     public Transform parentTransformFillable;
     [SerializeField] private PopUpManager popUpManager;
+    [SerializeField] private GameObject popUpUI;
     [SerializeField] private GameObject checkButton;
+    [SerializeField] private GameObject explanation;
+    [SerializeField] private TypeTextAnimation textExplanation;
+    [SerializeField] private GameObject exitButton;
+    [SerializeField] private TMP_Text exitButtonText;
 
     private StepSlot[] stepSlotsFillable;
     private StepSlot[] stepSlotsToFill;
@@ -21,12 +28,16 @@ public class PopUpOrder : MonoBehaviour
     [SerializeField] private Image attempt2;
     [SerializeField] private Image attempt3;
     private int attemptNumber;
+    private bool isShowing;
     public int reward;
 
     private List<string> correctOrderSteps = new List<string>();
 
     private bool isEqual;
     private bool verifiable = false;
+
+    public Color redAttempt = new Color(200f / 255, 75f / 255, 75f / 255, 255f / 255);
+    private Color greenAttempt = new Color(75f / 255, 220f / 255, 75f / 255, 255f / 255);
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.V)){
@@ -35,8 +46,8 @@ public class PopUpOrder : MonoBehaviour
     }
 
     private void Awake() {
-        AddSlotsToFill(); //da pra unir esse
-        AddSlotsFillable(); //e esse
+        AddSlotsToFill();
+        AddSlotsFillable();
         SetCorrectOrder();
     }
 
@@ -71,7 +82,7 @@ public class PopUpOrder : MonoBehaviour
     {
         for(int i=0; i<list.Count; i++)
         {
-            int randomIndex = Random.Range(i, list.Count);
+            int randomIndex = UnityEngine.Random.Range(i, list.Count);
             Step temp = list[i];
             list[i] = list[randomIndex];
             list[randomIndex] = temp;
@@ -119,22 +130,49 @@ public class PopUpOrder : MonoBehaviour
         }
     }
 
+    public void ExplanationOrExit(){
+        if(!isShowing){
+            foreach(Transform slotsToFill in parentTransformToFill){
+                if(slotsToFill.gameObject.activeInHierarchy){
+                    GameObject.Destroy(slotsToFill.gameObject);
+                }
+            }
+            ShowCorrect();
+            exitButton.SetActive(true);
+            exitButtonText.text = "SAIR";
+            popUpManager.DesactiveMouseEvents();
+            explanation.SetActive(true);
+            textExplanation.speech = popUpData.mechanicExplanation;
+            textExplanation.StartTyping();
+            isShowing = true;
+        }else{
+            popUpUI.SetActive(false);
+            
+        }
+        
+    }
+    
     public void Verify()
     {
+        Color tempColor;
         isEqual = stepsFillable.SequenceEqual(correctOrderSteps);
-        if (isEqual){
-            Debug.Log("ORDEM CORRETA! voce ganhou " + reward + " de recompensa");
+        if (isEqual)
+        {
+            StartCoroutine(popUpManager.verifyColor(greenAttempt));
+            Debug.Log("ORDEM CORRETA! você ganhou " + reward + " de recompensa");
+            tempColor = greenAttempt;
+            ExplanationOrExit();
         }
         else
         {
-            Debug.Log("ORDEM ICORRETA");
-            attemptNumber++;
-            for(int i = 0; i < stepsFillable.Count; i++)
+            StartCoroutine(popUpManager.verifyColor(redAttempt));
+            Debug.Log("ORDEM INCORRETA");
+            for (int i = 0; i < stepsFillable.Count; i++)
             {
-                if(i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
+                if (i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
                 {
-                    Debug.Log(stepSlotsFillable[i].stepText.text);
                     StepSlot availableSlot = stepSlotsToFill.FirstOrDefault(slot => !slot.isFilled);
+                
                     if (availableSlot != null)
                     {
                         availableSlot.InsertStep(stepsFillable[i]);
@@ -142,28 +180,45 @@ public class PopUpOrder : MonoBehaviour
                     }
                 }
             }
+            tempColor = redAttempt;
+            attemptNumber++;
         }
         checkButton.SetActive(false);
-        SetReward();
+        SetReward(tempColor);
     }
 
-    private void SetReward()
+    private void SetReward(Color currentColor)
     {
         switch (attemptNumber)
+        {  
+            case 0:
+                reward = popUpData.totalReward;
+                attempt1.color = greenAttempt;
+                break;
+            case 1:
+                reward = popUpData.secondReward;
+                attempt1.color = redAttempt;
+                if(currentColor == greenAttempt) attempt2.color = greenAttempt;
+                break;
+            case 2:
+                reward = popUpData.thirdReward;
+                attempt2.color = redAttempt;
+                if(currentColor == greenAttempt) attempt3.color = greenAttempt;
+                break;
+            case 3:
+                reward = popUpData.fourthReward;
+                attempt3.color = currentColor;
+                Debug.Log("Não foi dessa vez. Ganhou " + reward + " de recompensa");
+                exitButton.SetActive(true);
+                popUpManager.DesactiveMouseEvents();
+                break;
+        }
+    }
+
+    private void ShowCorrect(){
+        for (int i = 0; i < stepsFillable.Count; i++)
             {
-                case 0:
-                    reward = popUpData.totalReward;
-                    break;
-                case 1:
-                    reward = popUpData.secondReward;
-                    break;
-                case 2:
-                    reward = popUpData.thirdReward;
-                    break;
-                case 3:
-                    reward = popUpData.fourthReward;
-                    Debug.Log("Não foi dessa vez. Ganhou " + reward + " de recompensa");
-                    break;
+                stepSlotsFillable[i].InsertStep(correctOrderSteps[i]);
             }
     }
 }

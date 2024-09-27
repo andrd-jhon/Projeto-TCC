@@ -13,7 +13,7 @@ public class PopUpManager : MonoBehaviour
 
     public List<StepSlot> allStepSlot = new List<StepSlot>();
 
-    [SerializeField] private GameObject PopUpUI;
+    [SerializeField] private GameObject popUpUI;
 
     [SerializeField] MouseFollowerPopUp mouseFollowerPopUp;
     private StepSlot originSlotStep;
@@ -21,6 +21,7 @@ public class PopUpManager : MonoBehaviour
     [SerializeField] private TMP_Text mechanicName;
     [SerializeField] private Image imageMechanic;
     [SerializeField] private TMP_Text description;
+    [SerializeField] private FadeComponent attemptIndicator;
 
     private bool isActive;
 
@@ -29,22 +30,6 @@ public class PopUpManager : MonoBehaviour
         SetData();
         MouseEvents();
     }
-
-    private void Update() 
-    {
-        if(Input.GetKeyDown(KeyCode.Q) && isActive){
-            PopUpUI.SetActive(false);
-            PlayerController.state = PLAYER.FREE;
-            isActive = false;
-        }
-        else if(Input.GetKeyDown(KeyCode.Q) && !isActive){
-            Debug.Log(PopUpUI.name);
-            PlayerController.state = PLAYER.INTERACT;
-            PopUpUI.SetActive(true);
-            isActive = true;
-        }
-    }
-
     private void MouseEvents()
     {
         foreach (StepSlot slotStep in allStepSlot)
@@ -52,6 +37,16 @@ public class PopUpManager : MonoBehaviour
             slotStep.OnStepBeginDrag += HandleBeginDrag;
             slotStep.OnStepDrop += HandleSwap;
             slotStep.OnStepEndDrag += HandleEndDrag;
+        }
+    }
+
+    public void DesactiveMouseEvents()
+    {
+        foreach (StepSlot slotStep in allStepSlot)
+        {
+            slotStep.OnStepBeginDrag -= HandleBeginDrag;
+            slotStep.OnStepDrop -= HandleSwap;
+            slotStep.OnStepEndDrag -= HandleEndDrag;
         }
     }
 
@@ -102,5 +97,10 @@ public class PopUpManager : MonoBehaviour
         interface2.SetActive(false);
         interface1.SetActive(true);
     }
-    
+
+    public IEnumerator verifyColor(Color colorAttempt){
+        attemptIndicator.fadeImage.enabled = true;
+        yield return StartCoroutine(attemptIndicator.Fade(colorAttempt, attemptIndicator.transparentColor, 1f));
+        attemptIndicator.fadeImage.enabled = false;
+    }
 }
