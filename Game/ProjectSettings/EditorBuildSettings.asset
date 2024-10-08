@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pop-up.unity
     guid: cedb81eb3970e8543a1d64ed3644d2c9
+  - enabled: 1
+    path: Assets/Scenes/HouseMain.unity
+    guid: ae4218690d6ab4644ab44034d1e708db
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

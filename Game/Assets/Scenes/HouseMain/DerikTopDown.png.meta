@@ -1,0 +1,514 @@
+fileFormatVersion: 2
+guid: 956a263e5e99d914998f10b92be6fb4e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7083445097920205109
+    second: DerikTopDown_0
+  - first:
+      213: -6629346099769791093
+    second: DerikTopDown_1
+  - first:
+      213: -2198976068116159597
+    second: DerikTopDown_2
+  - first:
+      213: 2202796297466546720
+    second: DerikTopDown_3
+  - first:
+      213: -7066601620922210885
+    second: DerikTopDown_4
+  - first:
+      213: -7960329700479141878
+    second: DerikTopDown_5
+  - first:
+      213: 4765987663460923648
+    second: DerikTopDown_6
+  - first:
+      213: -7114495336106769278
+    second: DerikTopDown_7
+  - first:
+      213: -6253286161571583837
+    second: DerikTopDown_8
+  - first:
+      213: 4839486078054686646
+    second: DerikTopDown_9
+  - first:
+      213: -4619806600055678150
+    second: DerikTopDown_10
+  - first:
+      213: -429030476391416797
+    second: DerikTopDown_11
+  - first:
+      213: -7921837900500262388
+    second: DerikTopDown_12
+  - first:
+      213: -781162624231709928
+    second: DerikTopDown_13
+  - first:
+      213: 5896873772032551602
+    second: DerikTopDown_14
+  - first:
+      213: -5198055756320587172
+    second: DerikTopDown_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DerikTopDown_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 126
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 531148f69c37d4260800000000000000
+      internalID: 7083445097920205109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 126
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8da91698d4dff3a0800000000000000
+      internalID: -6629346099769791093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 126
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 393e95eaaeaab71e0800000000000000
+      internalID: -2198976068116159597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_3
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 126
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a0a07cf87e19e10800000000000000
+      internalID: 2202796297466546720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 86
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb56bb724436eed90800000000000000
+      internalID: -7066601620922210885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 86
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08f2f3205a378190800000000000000
+      internalID: -7960329700479141878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 86
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0097b745780342240800000000000000
+      internalID: 4765987663460923648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_7
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 86
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284ce2f9f2c344d90800000000000000
+      internalID: -7114495336106769278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 46
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a8e8ac0e5dd739a0800000000000000
+      internalID: -6253286161571583837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_9
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 46
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bfd5e182fe492340800000000000000
+      internalID: 4839486078054686646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 46
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b1da0cf5623efb0800000000000000
+      internalID: -4619806600055678150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_11
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 46
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32c7fd80e07cb0af0800000000000000
+      internalID: -429030476391416797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 6
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02a474b66aff0290800000000000000
+      internalID: -7921837900500262388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 6
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8136bd66bb0c825f0800000000000000
+      internalID: -781162624231709928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_14
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 6
+        width: 17
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba6153e377e5d150800000000000000
+      internalID: 5896873772032551602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DerikTopDown_15
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 6
+        width: 19
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5246d184dbccd7b0800000000000000
+      internalID: -5198055756320587172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: cd2e26689ce1b9140a20700d8c2e6f2a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      DerikTopDown_0: 7083445097920205109
+      DerikTopDown_1: -6629346099769791093
+      DerikTopDown_10: -4619806600055678150
+      DerikTopDown_11: -429030476391416797
+      DerikTopDown_12: -7921837900500262388
+      DerikTopDown_13: -781162624231709928
+      DerikTopDown_14: 5896873772032551602
+      DerikTopDown_15: -5198055756320587172
+      DerikTopDown_2: -2198976068116159597
+      DerikTopDown_3: 2202796297466546720
+      DerikTopDown_4: -7066601620922210885
+      DerikTopDown_5: -7960329700479141878
+      DerikTopDown_6: 4765987663460923648
+      DerikTopDown_7: -7114495336106769278
+      DerikTopDown_8: -6253286161571583837
+      DerikTopDown_9: 4839486078054686646
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
