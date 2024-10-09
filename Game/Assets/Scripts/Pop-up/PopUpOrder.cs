@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
+using UnityEngine.Events;
 using TMPro;
 
 public class PopUpOrder : MonoBehaviour
 {
+    // public UnityEvent showReward;
+
+    public InformationBoxCall informationBoxCall;
+
     public List<string> stepsFillable = new List<string>();
     public PopUpData popUpData;
     public GameObject slot;
@@ -147,7 +152,9 @@ public class PopUpOrder : MonoBehaviour
             isShowing = true;
         }else{
             popUpUI.SetActive(false);
-            
+            informationBoxCall.informationText = "Você recebeu " + reward + " de recompensa";
+            informationBoxCall.ApenasDeTeste();
+            // showReward.Invoke();
         }
         
     }

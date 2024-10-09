@@ -11,6 +11,8 @@ public class TransitionSystem : MonoBehaviour
     Image runAnim;
     PlayerController playerController;
 
+    private string initialPositionName;
+
     private void Awake() 
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -23,8 +25,9 @@ public class TransitionSystem : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;    
     }
 
-    public IEnumerator Transition(string place)
+    public IEnumerator Transition(string place, string positionName)
     {
+        initialPositionName = positionName;
         PlayerController.state = PLAYER.INTERACT;
 
         yield return StartCoroutine(fadeComponent.FadeIn());
@@ -32,8 +35,9 @@ public class TransitionSystem : MonoBehaviour
         SceneManager.LoadScene(place);
     }
 
-    public IEnumerator TransitionAsync(string place)
+    public IEnumerator TransitionAsync(string place, string positionName)
     {
+        initialPositionName = positionName;
         PlayerController.state = PLAYER.INTERACT;
         
         yield return StartCoroutine(fadeComponent.FadeIn());
@@ -49,10 +53,15 @@ public class TransitionSystem : MonoBehaviour
 
     void OnSceneLoaded(Scene sceneLoaded, LoadSceneMode loadSceneMode)
     {
-        GameObject inicialPos = GameObject.FindGameObjectWithTag("InicialPosition");
-        Transform inicialPosTransform = inicialPos.transform;
-        Vector3 inicialPosPlayer = inicialPosTransform.position;
-        playerController.transform.position = inicialPosPlayer;
+        GameObject inicialPos = GameObject.Find(initialPositionName); // Encontre a posição inicial pelo nome
+        if (inicialPos != null)
+        {
+            Transform inicialPosTransform = inicialPos.transform;
+            Vector3 inicialPosPlayer = inicialPosTransform.position;
+            playerController.transform.position = inicialPosPlayer;
+        }else{
+            Debug.Log("Nao achou nenhum objeto com este nome");
+        }
 
         runningAnimated.SetActive(false);
         StartCoroutine(fadeComponent.FadeOut());

@@ -30,6 +30,13 @@ public class PopUpManager : MonoBehaviour
         SetData();
         MouseEvents();
     }
+
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.T)){
+            Debug.Log("pao");
+            popUpUI.SetActive(true);
+        }
+    }
     private void MouseEvents()
     {
         foreach (StepSlot slotStep in allStepSlot)

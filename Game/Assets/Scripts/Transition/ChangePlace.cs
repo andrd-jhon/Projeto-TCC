@@ -10,6 +10,8 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     [SerializeField] string namePlace;
 
+    [SerializeField] string positionName;
+
     private void Awake()
     {
         transitionSystem = FindObjectOfType<TransitionSystem>();
@@ -25,10 +27,10 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
         if(!isAsync)
         {
-            StartCoroutine(transitionSystem.Transition(namePlace));
+            StartCoroutine(transitionSystem.Transition(namePlace, positionName));
         }
         else{
-            StartCoroutine(transitionSystem.TransitionAsync(namePlace));
+            StartCoroutine(transitionSystem.TransitionAsync(namePlace, positionName));
         }
     }
 

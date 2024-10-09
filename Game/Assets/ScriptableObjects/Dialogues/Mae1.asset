@@ -18,16 +18,22 @@ MonoBehaviour:
     name2: 
     character2: {fileID: 0}
     LeftTalk: 1
-    text: "Ol\xE1 tudo bem?"
+    text: Oi tudo bem mae?
   - name1: 
     character1: {fileID: 0}
     name2: Mae
     character2: {fileID: 21300000, guid: c7400515e3838654cb8db1e65e2d50d5, type: 3}
     LeftTalk: 0
-    text: "Ol\xE1, conseguiu fazer aquilo que te pedi filho?"
+    text: Sim filho, olha acho que vou vender as coisas do seu irmao, estou sem esperancas
   - name1: Derik
     character1: {fileID: 7083445097920205109, guid: 5d65264f09c85b34c9d325e921a3b4a7, type: 3}
     name2: 
     character2: {fileID: 0}
     LeftTalk: 1
-    text: "Ainda n\xE3o m\xE3e, mas vou coneguir"
+    text: Calma mae ele esta vivo, ele resistia a qualquer coisa
+  - name1: 
+    character1: {fileID: 0}
+    name2: "M\xE3e"
+    character2: {fileID: 21300000, guid: c7400515e3838654cb8db1e65e2d50d5, type: 3}
+    LeftTalk: 0
+    text: Gostaria de ainda ter esperancas
