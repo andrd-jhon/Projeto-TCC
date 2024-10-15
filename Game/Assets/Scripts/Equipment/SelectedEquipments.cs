@@ -74,4 +74,9 @@ public class SelectedEquipments : MonoBehaviour
             changeWeaponCoroutine = null;
         }
     }
+
+    public void Selected(EquipmentData equipmentData)
+    {
+
+    }
 }

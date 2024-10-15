@@ -58,26 +58,6 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void VerifyType(EquipmentData equipmentData)
-    {
-        switch (equipmentData.equipmentCategory)
-        {
-            case EquipmentCategory.sword:
-                // Debug.Log(equipmentData.equipmentCategory);
-                SetSword(equipmentData);
-                break;
-            case EquipmentCategory.bow:
-                SetBow(equipmentData);
-                break;
-            case EquipmentCategory.shield:
-                SetShield(equipmentData);
-                break;
-            case EquipmentCategory.potion:
-                SetPotion(equipmentData);
-                break;
-        }
-    }
-
     public void MouseEvents()
     {
         for(int i = 0; i < allFields.Length; i++)
@@ -144,73 +124,39 @@ public class EquipmentManager : MonoBehaviour
     return null;
     }
 
-    private void SetSword(EquipmentData equipmentData)
+
+    public void VerifyType(EquipmentData equipmentData)
     {
-        if(selectedEquipments.swordSelected.equipmentName == ""){
-            // Debug.Log(equipmentData.equipmentCategory);
-            selectedEquipments.swordSelected.InsertEquipment(equipmentData);
-            selectedEquipments.SetSelected(equipmentData);
-        }
-        else{
-            for(int i = 0; i < swordField.Length; i++)
-            {
-                if(swordField[i].isFilled == false)
-                {
-                    swordField[i].InsertEquipment(equipmentData);
-                    return;
-                }
-            }
+        switch (equipmentData.equipmentCategory)
+        {
+            case EquipmentCategory.sword:
+                SetEquipment(equipmentData, selectedEquipments.swordSelected, swordField);
+                break;
+            case EquipmentCategory.bow:
+                SetEquipment(equipmentData, selectedEquipments.bowSelected, bowField);
+                break;
+            case EquipmentCategory.shield:
+                SetEquipment(equipmentData, selectedEquipments.shieldSelected, shieldField);
+                break;
+            case EquipmentCategory.potion:
+                SetEquipment(equipmentData, selectedEquipments.potionSelected, potionField);
+                break;
         }
     }
 
-    private void SetBow(EquipmentData equipmentData)
+    private void SetEquipment(EquipmentData equipmentData, EquipmentField selectEquipment, EquipmentField[] deselectEquipment) //Fazer
     {
-        if(selectedEquipments.bowSelected.equipmentName == ""){
-            selectedEquipments.bowSelected.InsertEquipment(equipmentData);
-            selectedEquipments.SetSelected(equipmentData);
-        }
-        else{
-            for(int i = 0; i < swordField.Length; i++)
-            {
-                if(bowField[i].isFilled == false)
-                {
-                    bowField[i].InsertEquipment(equipmentData);
-                    return;
-                }
-            }
-        }
-    }
 
-    private void SetShield(EquipmentData equipmentData)
-    {
-        if(selectedEquipments.shieldSelected.equipmentName == ""){
-            selectedEquipments.shieldSelected.InsertEquipment(equipmentData);
+        if(selectEquipment.equipmentName == ""){
+            selectEquipment.InsertEquipment(equipmentData);
             selectedEquipments.SetSelected(equipmentData);
         }
         else{
-            for(int i = 0; i < shieldField.Length; i++)
+            for(int i = 0; i < deselectEquipment.Length; i++)
             {
-                if(shieldField[i].isFilled == false)
+                if(deselectEquipment[i].isFilled == false)
                 {
-                    shieldField[i].InsertEquipment(equipmentData);
-                    return;
-                }
-            }
-        }
-    }
-
-    private void SetPotion(EquipmentData equipmentData)
-    {
-        if(selectedEquipments.potionSelected.equipmentName == ""){
-            selectedEquipments.potionSelected.InsertEquipment(equipmentData);
-            selectedEquipments.SetSelected(equipmentData);
-        }
-        else{
-            for(int i = 0; i < potionField.Length; i++)
-            {
-                if(potionField[i].isFilled == false)
-                {
-                    potionField[i].InsertEquipment(equipmentData);
+                    deselectEquipment[i].InsertEquipment(equipmentData);
                     return;
                 }
             }

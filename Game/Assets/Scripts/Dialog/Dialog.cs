@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour,IInteractable
 {
+    public UnityEvent finishDialog;
     public DialogueData dialogueData;
     DialogSystem dialogSystem;
 

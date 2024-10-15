@@ -9,9 +9,7 @@ using TMPro;
 
 public class PopUpOrder : MonoBehaviour
 {
-    // public UnityEvent showReward;
-
-    public InformationBoxCall informationBoxCall;
+    private InformationBox informationBox;
 
     public List<string> stepsFillable = new List<string>();
     public PopUpData popUpData;
@@ -54,6 +52,7 @@ public class PopUpOrder : MonoBehaviour
         AddSlotsToFill();
         AddSlotsFillable();
         SetCorrectOrder();
+        informationBox = GetComponent<InformationBox>();
     }
 
     private void Start() {
@@ -152,9 +151,9 @@ public class PopUpOrder : MonoBehaviour
             isShowing = true;
         }else{
             popUpUI.SetActive(false);
-            informationBoxCall.informationText = "Você recebeu " + reward + " de recompensa";
-            informationBoxCall.ApenasDeTeste();
-            // showReward.Invoke();
+            informationBox.informationText = "Você recebeu " + reward +  " de recompensa";
+            informationBox.ShowInformationsBox();
+            PlayerController.state = PLAYER.FREE;
         }
         
     }

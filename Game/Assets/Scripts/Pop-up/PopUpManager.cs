@@ -23,6 +23,8 @@ public class PopUpManager : MonoBehaviour
     [SerializeField] private TMP_Text description;
     [SerializeField] private FadeComponent attemptIndicator;
 
+    private bool AlreadyAppeared;
+
     private bool isActive;
 
     private void Start()
@@ -31,10 +33,12 @@ public class PopUpManager : MonoBehaviour
         MouseEvents();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.T)){
-            Debug.Log("pao");
+    public void ShowPopUp()
+    {
+        if(!AlreadyAppeared){
+            AlreadyAppeared = true;
             popUpUI.SetActive(true);
+            PlayerController.state = PLAYER.INTERACT;
         }
     }
     private void MouseEvents()

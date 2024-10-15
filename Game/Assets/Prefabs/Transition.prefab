@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 695757681176639596}
   - component: {fileID: 715610024048977517}
   - component: {fileID: 3903069561743669415}
-  - component: {fileID: 3609538763554764480}
-  - component: {fileID: 8757296268145688280}
+  - component: {fileID: 941292840077979340}
+  - component: {fileID: 7133744975860950426}
   m_Layer: 5
   m_Name: Transition
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &715610024048977517
 MonoBehaviour:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3609538763554764480
+--- !u!114 &941292840077979340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,11 +114,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745573787343573060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc44ce8c85eae8248bb9c1d3b083f8b3, type: 3}
+  m_Script: {fileID: 11500000, guid: b79e33474e540654b9e77ae7bead7d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   runningAnimated: {fileID: 5221522363204154388}
---- !u!114 &8757296268145688280
+--- !u!114 &7133744975860950426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745573787343573060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc12673d3cb85e44a1283dd0cad3b24, type: 3}
+  m_Script: {fileID: 11500000, guid: c68591b8bb2226940b0052670019a62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: 
@@ -264,8 +264,8 @@ GameObject:
   - component: {fileID: 6800726624895476141}
   - component: {fileID: 8546835943332222661}
   - component: {fileID: 3866918398463488026}
-  - component: {fileID: 4499086265303245737}
   - component: {fileID: 7213836489129761001}
+  - component: {fileID: 7553015010863718906}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -330,21 +330,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4499086265303245737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6560018406894167083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a161a4a90e4cd498521b4473ac8bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teste: 23
-  outDuration: 1.5
-  inDuration: 1.5
 --- !u!223 &7213836489129761001
 Canvas:
   m_ObjectHideFlags: 0
@@ -368,3 +353,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7553015010863718906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560018406894167083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3253d23ab0d4334795414997f7247f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
+  transparentColor: {r: 0, g: 0, b: 0, a: 0}
+  outDuration: 1.5
+  inDuration: 1.5

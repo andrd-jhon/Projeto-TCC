@@ -13,16 +13,17 @@ public class DialogSystem : MonoBehaviour
     GameObject NPC;
     public Dialog npcDialog;
     DialogueData dialogueData;
-    TypeTextAnimation typeText;
+    [SerializeField] private TypeTextAnimation typeText;
     DialogUI dialogUI;
     PlayerController playerController;
+
 
 
     public STATE state;
     
     private void Awake() 
     {
-        typeText = FindObjectOfType<TypeTextAnimation>(); 
+        // typeText = FindObjectOfType<TypeTextAnimation>(); 
         dialogUI = FindObjectOfType<DialogUI>();
         dialogueData = FindObjectOfType<DialogueData>();
         playerController = FindObjectOfType<PlayerController>();
@@ -96,6 +97,8 @@ public class DialogSystem : MonoBehaviour
                 currentText = 0;
                 finished = false;
                 PlayerController.state = PLAYER.FREE;
+                Debug.Log(PLAYER.FREE);
+                npcDialog.finishDialog?.Invoke();
             }
         }
     }
