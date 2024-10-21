@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pop-up.unity
     guid: cedb81eb3970e8543a1d64ed3644d2c9
-  - enabled: 0
-    path: Assets/Scenes/HouseMain.unity
-    guid: ae4218690d6ab4644ab44034d1e708db
   - enabled: 1
     path: "Assets/Scenes/Apresenta\xE7\xE3o/HouseBedroom.unity"
     guid: 0b0c4e7c6f0bbeb42a0006f23ec83a83
@@ -26,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Apresenta\xE7\xE3o/SmallForest.unity"
     guid: f2e470cd26f517647a9a870e91cad0c0
+  - enabled: 1
+    path: "Assets/Scenes/Apresenta\xE7\xE3o/TestMenu.unity"
+    guid: dbeccf6e189337a4c9e06e49147aa500
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

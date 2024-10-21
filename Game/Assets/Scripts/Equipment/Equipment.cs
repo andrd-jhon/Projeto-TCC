@@ -13,12 +13,22 @@ public class Equipment : MonoBehaviour, IInteractable
     // public Action getEquipemnt;
 
     private EquipmentManager equipmentManager;
+    private GameManager saveManager;
 
     // public EquipmentCategory equipmentCategory;
     
-    void Start()
+    void Awake()
     {
         equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+        saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    private void Start() {
+        GameManager.GameData data = saveManager.LoadGame();
+        if (data.destroyedObjects.Contains(gameObject.name))
+        {
+            Destroy(gameObject);  // Destrói se o objeto foi marcado como destruído
+        }
     }
 
     // private void OnCollisionEnter2D(Collision2D collision) {
@@ -36,6 +46,24 @@ public class Equipment : MonoBehaviour, IInteractable
     public void PickUpEquipment(){
         equipmentManager.VerifyType(equipmentData);
         getEquipemnt?.Invoke();
+        // SaveEquipmentState();
+        DestroyPermanently();
         Destroy(gameObject);
+    }
+
+    // public void SaveEquipmentState()
+    // {
+    //     GameManager.GameData data = new GameManager.GameData()
+    //     {
+    //         playerPosition = new Vector2(UnityEngine.Random.Range(0,9), UnityEngine.Random.Range(0,9))
+    //     };
+    //     saveManager.SaveGame(data);
+    // }
+
+    public void DestroyPermanently()
+    {
+        GameManager.GameData data = saveManager.LoadGame();
+        data.destroyedObjects.Add(gameObject.name);
+        saveManager.SaveGame(data);
     }
 }

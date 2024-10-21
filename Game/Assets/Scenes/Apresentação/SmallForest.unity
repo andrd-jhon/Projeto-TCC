@@ -847,9 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa67cb5794c4374384dda45d7372bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAsync: 0
-  namePlace: HouseMain
-  positionName: LadderPosition
+  notToTopDown: 0
+  nameScene: HouseMain
+  positionName: DoorPosition
 --- !u!58 &301335606
 CircleCollider2D:
   m_ObjectHideFlags: 0
