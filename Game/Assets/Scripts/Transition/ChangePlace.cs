@@ -30,7 +30,7 @@ public class ChangePlace : MonoBehaviour, IInteractable
         ChangeScene();
     }
 
-    void ChangeScene()
+    private void ChangeScene()
     {
          PlayerController.state = PLAYER.INTERACT;
         if(!notToTopDown)

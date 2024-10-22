@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Marcao1
   m_EditorClassIdentifier: 
   talkScript:
-  - name1: Marus Coast
+  - name1: Marcus Coast
     character1: {fileID: 21300000, guid: ffd2326f261fed243a9c2e82e8415299, type: 3}
     name2: 
     character2: {fileID: 0}

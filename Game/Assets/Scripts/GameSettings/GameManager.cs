@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public void SaveGame(GameData data)
     {
         string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json); //AQUI QUE CRIA O ARQUIVO
         Debug.Log("JOGO SALVO");
     }
 
@@ -46,5 +46,12 @@ public class GameManager : MonoBehaviour
             return null;
             // return new GameData();
         }
+    }
+
+    public void Test(){
+        GameManager.GameData data = LoadGame();
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        SaveGame(data);
     }
 }
