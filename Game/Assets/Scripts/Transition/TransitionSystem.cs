@@ -14,7 +14,7 @@ public class TransitionSystem : MonoBehaviour
     private string initialPositionName;
     private Vector2 initialPositionPlace; 
 
-    private GameManager saveManager;
+    // private GameManager saveManager;
     
     private bool transitionByName;
 
@@ -22,7 +22,7 @@ public class TransitionSystem : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         fadeComponent = FindObjectOfType<FadeComponent>();
-        saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // runAnim = runningAnimated.GetComponent<Image>();
     }
 
@@ -67,7 +67,7 @@ public class TransitionSystem : MonoBehaviour
 
     void OnSceneLoaded(Scene sceneLoaded, LoadSceneMode loadSceneMode)
     {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         
 
         GameObject inicialPos = GameObject.Find(initialPositionName); // Encontre a posição inicial pelo nome
@@ -77,7 +77,7 @@ public class TransitionSystem : MonoBehaviour
             playerController = FindObjectOfType<PlayerController>();
             playerController.transform.position = inicialPosPlayer;
             data.lastPlayerPosition = inicialPosPlayer;
-            saveManager.SaveGame(data);
+            GameManager.instance.SaveGame(data);
         }else{
             Debug.Log("Nao achou nenhum objeto com este nome");
         }

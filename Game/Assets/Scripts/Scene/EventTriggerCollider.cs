@@ -10,15 +10,15 @@ public class EventTriggerCollider : MonoBehaviour
 
     [SerializeField] private bool desactive;
 
-    private GameManager saveManager;
+    // private GameManager saveManager;
 
-    private void Awake() {
-        saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
+    // private void Awake() {
+    //     saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    // }
 
     private void Start() {
         circleCollider = this.gameObject.GetComponent<CircleCollider2D>();
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         if(data.destroyedObjects.Contains(gameObject.name))
         {
             Destroy(gameObject);
@@ -39,8 +39,8 @@ public class EventTriggerCollider : MonoBehaviour
 
     public void DestroyPermanently()
     {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         data.destroyedObjects.Add(gameObject.name);
-        saveManager.SaveGame(data);
+        GameManager.instance.SaveGame(data);
     }
 }

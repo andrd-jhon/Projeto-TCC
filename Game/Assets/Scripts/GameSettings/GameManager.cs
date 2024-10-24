@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public string saveFileName;
+
     [System.Serializable]
     public class GameData
     {
@@ -29,20 +31,20 @@ public class GameManager : MonoBehaviour
     public void SaveGame(GameData data)
     {
         string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json); //AQUI QUE CRIA O ARQUIVO
+        File.WriteAllText(Application.persistentDataPath + "/" + saveFileName + ".json", json); //AQUI QUE CRIA O ARQUIVO
         Debug.Log("JOGO SALVO");
     }
 
     public GameData LoadGame()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + "/" + saveFileName + ".json";
         if(File.Exists(path)){
             string json = File.ReadAllText(path);
             return JsonUtility.FromJson<GameData>(json);
         }
         else
         {
-            Debug.Log("Nenhum arquivo encontrado");
+            Debug.Log("Nenhum arquivo encontrado com nome :" + saveFileName);
             return null;
             // return new GameData();
         }
@@ -50,8 +52,11 @@ public class GameManager : MonoBehaviour
 
     public void Test(){
         GameManager.GameData data = LoadGame();
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-        SaveGame(data);
+        if(data != null){
+            SaveGame(data);
+        }
+        else{
+            Debug.Log("Falha no carregamento para o arquivo: " + saveFileName);
+        }
     }
 }

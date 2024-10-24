@@ -13,18 +13,16 @@ public class Equipment : MonoBehaviour, IInteractable
     // public Action getEquipemnt;
 
     private EquipmentManager equipmentManager;
-    private GameManager saveManager;
 
     // public EquipmentCategory equipmentCategory;
     
     void Awake()
     {
         equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
-        saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Start() {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         if (data.destroyedObjects.Contains(gameObject.name))
         {
             Destroy(gameObject);  // Destrói se o objeto foi marcado como destruído
@@ -62,8 +60,11 @@ public class Equipment : MonoBehaviour, IInteractable
 
     public void DestroyPermanently()
     {
-        GameManager.GameData data = saveManager.LoadGame();
-        data.destroyedObjects.Add(gameObject.name);
-        saveManager.SaveGame(data);
+        GameManager.GameData data = GameManager.instance.LoadGame();
+        if (data != null)
+        {
+            data.destroyedObjects.Add(gameObject.name);
+            GameManager.instance.SaveGame(data);
+        }
     }
 }

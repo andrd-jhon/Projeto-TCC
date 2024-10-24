@@ -11,19 +11,23 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     [SerializeField] bool notToTopDown;
 
-    [SerializeField] string nameScene;
+    [SerializeField] public string nameScene;
 
-    [SerializeField] string positionName;
+    [SerializeField] public string positionName;
 
-    private GameManager saveManager;
+    public string currentSave;
+
+    // private GameManager saveManager;
 
     PlayerController playerController;
 
     private void Awake()
     {
         transitionSystem = FindObjectOfType<TransitionSystem>();
-        saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        // saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        if(GameObject.Find("Player")) playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     public void Interact(){
@@ -32,7 +36,7 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     private void ChangeScene()
     {
-         PlayerController.state = PLAYER.INTERACT;
+        PlayerController.state = PLAYER.INTERACT;
         if(!notToTopDown)
         {
             StartCoroutine(transitionSystem.Transition(nameScene, positionName));
@@ -45,23 +49,24 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     public void ToMenu()
     {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         StartCoroutine(transitionSystem.TransitionAsync("TestMenu"));
-        data.lastPlayerPosition = playerController.transform.position;
-        saveManager.SaveGame(data);
+        if(playerController != null) data.lastPlayerPosition = playerController.transform.position;
+        GameManager.instance.SaveGame(data);
     }
 
     public void ToLastScene()
     {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.instance.saveFileName = currentSave;
+        GameManager.GameData data = GameManager.instance.LoadGame();
         StartCoroutine(transitionSystem.Transition(data.lastScene, data.lastPlayerPosition));
     }
 
     private void MarkLastScene()
     {
-        GameManager.GameData data = saveManager.LoadGame();
+        GameManager.GameData data = GameManager.instance.LoadGame();
         data.lastScene = nameScene;
-        saveManager.SaveGame(data);
+        GameManager.instance.SaveGame(data);
     }
 
     // IEnumerator Transition()
