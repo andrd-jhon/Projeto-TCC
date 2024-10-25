@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
         public List<string> destroyedObjects = new List<string>();
         public Vector2 lastPlayerPosition;
         public string lastScene;
+        public List<string> selectedEquipments = new List<string>();
+        public List<string> reservedEquipments = new List<string>();
     }
 
     private void Awake() {

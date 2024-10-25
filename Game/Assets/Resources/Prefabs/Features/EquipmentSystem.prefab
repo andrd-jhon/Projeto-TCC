@@ -1731,6 +1731,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25133176f5001934cad8bf3d0beb370c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allEquipments:
+  - {fileID: 11400000, guid: fea4a010d7ebb3d458da30ae987fe02d, type: 2}
+  - {fileID: 11400000, guid: a622305b8b4c3424faaf404b1bea535e, type: 2}
+  - {fileID: 11400000, guid: 5b19880da1177474fab3de0f2762fc8e, type: 2}
+  - {fileID: 11400000, guid: 9599450a7b1735740a95167e386b3004, type: 2}
+  - {fileID: 11400000, guid: 03df25475cd80464da4e90e7c7fabd68, type: 2}
   EquipmentMenu: {fileID: 9136693340575431358}
   allFields:
   - {fileID: 6831911382453714364}
@@ -1768,6 +1774,10 @@ MonoBehaviour:
   selectedEquipments: {fileID: 4334957344632791805}
   mouseFollower: {fileID: 1277907413463341993}
   isActive: 0
+  equipmentsReserved: []
+  equipmentsSelected: []
+  equipmentsReservedName: []
+  equipmentsSelectedName: []
 --- !u!1 &9136693340575431358
 GameObject:
   m_ObjectHideFlags: 0

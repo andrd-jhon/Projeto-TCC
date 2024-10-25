@@ -44,6 +44,23 @@ public class SelectedEquipments : MonoBehaviour
         }
     }
 
+    public EquipmentField GetFieldByCategory(EquipmentCategory category)
+    {
+        switch(category)
+        {
+            case EquipmentCategory.sword:
+                return swordSelected;
+            case EquipmentCategory.bow:
+                return bowSelected;
+            case EquipmentCategory.shield:
+                return shieldSelected;
+            case EquipmentCategory.potion:
+                return potionSelected;
+            default:
+                return null;
+        }
+    }
+
     public IEnumerator ChangeWeapon(){
         while(equipmentManager.isActive){
             ShowSword();
