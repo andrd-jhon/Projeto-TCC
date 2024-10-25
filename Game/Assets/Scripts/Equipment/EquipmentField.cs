@@ -32,9 +32,9 @@ public class EquipmentField : MonoBehaviour, IPointerClickHandler, IDropHandler
 
     public event Action<EquipmentField> OnEquipmentDroppedOn, OnEquipmentBeginDrag, OnEquipmentEndDrag; //onpointclick;
 
-    private void Awake()
+    private void Start()
     {
-        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+        equipmentManager = FindFirstObjectByType<EquipmentManager>();    
     }
 
     public void InsertEquipment(EquipmentData equipmentData)

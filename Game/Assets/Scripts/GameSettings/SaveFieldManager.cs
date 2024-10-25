@@ -8,19 +8,15 @@ using TMPro;
 public class SaveFieldManager : MonoBehaviour
 {
     public GameObject gameObjectParent;
+    private GameMenu gameMenu;
 
-    public void DeleteSave()
+    private void Awake() 
     {
-        DirectoryInfo dirInfo = new DirectoryInfo(Application.persistentDataPath);
-        FileInfo[] files = dirInfo.GetFiles();
-        foreach (FileInfo file in files)
-        {
-            if(Path.GetFileNameWithoutExtension(file.Name) == gameObjectParent.name)
-            {
-                file.Delete();
-                Destroy(gameObjectParent);
-                return;
-            }
-        }
+        gameMenu = GameObject.Find("MenuManager").GetComponent<GameMenu>();
+    }
+
+    public void OpenConfirmDelete()
+    {
+        gameMenu.OpenConfirmDelete(gameObjectParent);
     }
 }

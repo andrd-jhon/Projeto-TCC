@@ -12,7 +12,7 @@ public class Dialog : MonoBehaviour,IInteractable
 
     bool isTalk = false;
 
-    private void Awake() 
+    private void Start()
     {
         dialogSystem = FindObjectOfType<DialogSystem>();
     }

@@ -14,9 +14,11 @@ public class SelectedEquipments : MonoBehaviour
     [SerializeField]
     public Image swordImage, bowImage, shieldImage, potionImage;
 
-    private void Awake()
+
+    private void Start()
     {
-        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
+        equipmentManager = FindFirstObjectByType<EquipmentManager>();
+        
     }
 
     public void SetSelected(EquipmentData equipmentData)

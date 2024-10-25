@@ -14,14 +14,9 @@ public class Equipment : MonoBehaviour, IInteractable
 
     private EquipmentManager equipmentManager;
 
-    // public EquipmentCategory equipmentCategory;
-    
-    void Awake()
-    {
-        equipmentManager = GameObject.Find("EquipmentSystem").GetComponent<EquipmentManager>();
-    }
-
     private void Start() {
+        equipmentManager = FindFirstObjectByType<EquipmentManager>();
+        
         GameManager.GameData data = GameManager.instance.LoadGame();
         if (data.destroyedObjects.Contains(gameObject.name))
         {

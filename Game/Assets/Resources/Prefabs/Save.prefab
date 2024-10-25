@@ -395,7 +395,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4340750744178623598}
         m_TargetAssemblyTypeName: SaveFieldManager, Assembly-CSharp
-        m_MethodName: DeleteSave
+        m_MethodName: OpenConfirmDelete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

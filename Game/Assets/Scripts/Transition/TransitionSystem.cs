@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class TransitionSystem : MonoBehaviour
 {
+    // [SerializeField] private GameObject dialogSystem;
+    // [SerializeField] private GameObject equipmentSystem;
+    // [SerializeField] private GameObject playerTopDown;
+
+    [SerializeField] private List<GameObject> gameObjectsTopDown; 
+
+    private bool toToDown;
+
     FadeComponent fadeComponent;
     public GameObject runningAnimated;
     Image runAnim;
@@ -13,8 +21,6 @@ public class TransitionSystem : MonoBehaviour
 
     private string initialPositionName;
     private Vector2 initialPositionPlace; 
-
-    // private GameManager saveManager;
     
     private bool transitionByName;
 
@@ -22,8 +28,6 @@ public class TransitionSystem : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         fadeComponent = FindObjectOfType<FadeComponent>();
-        // saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // runAnim = runningAnimated.GetComponent<Image>();
     }
 
     private void Start() 
@@ -36,6 +40,7 @@ public class TransitionSystem : MonoBehaviour
         initialPositionName = positionName;
         PlayerController.state = PLAYER.INTERACT;
         transitionByName = true;
+        toToDown = true;
         yield return StartCoroutine(fadeComponent.FadeIn());
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(place);
@@ -46,6 +51,7 @@ public class TransitionSystem : MonoBehaviour
         initialPositionPlace = playerPosition;
         PlayerController.state = PLAYER.INTERACT;
         transitionByName = false;
+        toToDown = true;
         yield return StartCoroutine(fadeComponent.FadeIn());
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(place);
@@ -54,7 +60,7 @@ public class TransitionSystem : MonoBehaviour
     public IEnumerator TransitionAsync(string place)
     {
         PlayerController.state = PLAYER.INTERACT;
-        
+        toToDown = false;
         yield return StartCoroutine(fadeComponent.FadeIn());
         yield return new WaitForSeconds(1.5f);
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(place);
@@ -71,24 +77,39 @@ public class TransitionSystem : MonoBehaviour
         
 
         GameObject inicialPos = GameObject.Find(initialPositionName); // Encontre a posição inicial pelo nome
-        if (inicialPos != null && transitionByName)
+
+        if(toToDown)
         {
-            Vector2 inicialPosPlayer = inicialPos.transform.position;
-            playerController = FindObjectOfType<PlayerController>();
-            playerController.transform.position = inicialPosPlayer;
-            data.lastPlayerPosition = inicialPosPlayer;
-            GameManager.instance.SaveGame(data);
-        }else{
-            Debug.Log("Nao achou nenhum objeto com este nome");
+            InstantiateObjectsTopDown();
+
+            if (inicialPos != null && transitionByName)
+            {
+                Vector2 inicialPosPlayer = inicialPos.transform.position;
+                playerController = FindObjectOfType<PlayerController>();
+                playerController.transform.position = inicialPosPlayer;
+                data.lastPlayerPosition = inicialPosPlayer;
+                GameManager.instance.SaveGame(data);
+                inicialPos = null;
+            }
+            else if(initialPositionPlace != null && !transitionByName)
+            {
+                Debug.Log("ESTA SENDO EXECUTADO");
+                playerController = FindObjectOfType<PlayerController>();
+                playerController.transform.position = initialPositionPlace;
+                inicialPos = null;
+            }
         }
 
-        if(initialPositionPlace != null && !transitionByName){
-            playerController = FindObjectOfType<PlayerController>();
-            playerController.transform.position = initialPositionPlace;
-        }
-
-
+        
         runningAnimated.SetActive(false);
         StartCoroutine(fadeComponent.FadeOut());
+    }
+
+    private void InstantiateObjectsTopDown()
+    {
+        foreach (GameObject obj in gameObjectsTopDown)
+        {
+            Instantiate(obj);
+        }
     }
 }

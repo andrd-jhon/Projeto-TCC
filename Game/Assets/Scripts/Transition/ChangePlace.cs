@@ -21,13 +21,13 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     PlayerController playerController;
 
-    private void Awake()
+    private void Start()
     {
         transitionSystem = FindObjectOfType<TransitionSystem>();
-        // saveManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-
-        if(GameObject.Find("Player")) playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        if(FindFirstObjectByType<PlayerController>())
+        {
+            playerController = FindFirstObjectByType<PlayerController>();
+        }
     }
 
     public void Interact(){

@@ -26,14 +26,13 @@ public class DialogSystem : MonoBehaviour
         // typeText = FindObjectOfType<TypeTextAnimation>(); 
         dialogUI = FindObjectOfType<DialogUI>();
         dialogueData = FindObjectOfType<DialogueData>();
-        playerController = FindObjectOfType<PlayerController>();
-
         typeText.TypeFinished = OnTypeFinishe;
 
     }
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         state = STATE.DISABLED;
     }
 

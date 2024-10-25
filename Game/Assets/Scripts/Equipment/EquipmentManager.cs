@@ -15,14 +15,11 @@ public class EquipmentManager : MonoBehaviour
 
     [SerializeField]
     private MouseFollower mouseFollower;
-
-    private PlayerController playerController;
     
     public bool isActive;
 
     private void Start() 
     {
-        playerController = FindObjectOfType<PlayerController>();
         MouseEvents();
     }
 

@@ -11,15 +11,18 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private GameObject newGameScreen;
     [SerializeField] private GameObject savesGameScreen;
     [SerializeField] private GameObject denialMessageScreen;
+    [SerializeField] public GameObject confirmDeleteScreen;
 
     [SerializeField] private Transform savesScreen;
     private GameObject saveGame;
     // [SerializeField] private GameObject NewGameScreen;
     [SerializeField] private TMP_InputField inputNameGame;
+    [SerializeField] private TMP_Text alertNameGame;
 
     [SerializeField] ChangePlace changeToNewGame;
 
-    private string[] deleteButtons;
+    private GameObject saveToDestroy;
+    
 
     private void Awake() {
         saveGame = Resources.Load<GameObject>("Prefabs/Save");
@@ -36,6 +39,7 @@ public class GameMenu : MonoBehaviour
     {
         newGameScreen.SetActive(false);
         inputNameGame.text = "";
+        alertNameGame.text = "";
     }
 
     public void CloseSaveGamesMenu()
@@ -46,6 +50,11 @@ public class GameMenu : MonoBehaviour
     public void CloseDenialMessage()
     {
         denialMessageScreen.SetActive(false);
+    }
+
+    public void CloseConfirmDelete()
+    {
+        confirmDeleteScreen.SetActive(false);
     }
 
     #endregion
@@ -67,6 +76,14 @@ public class GameMenu : MonoBehaviour
         denialMessageScreen.SetActive(true);
     }
 
+    public void OpenConfirmDelete(GameObject save)
+    {
+        confirmDeleteScreen.SetActive(true);
+        saveToDestroy = save;
+        TMP_Text textConfirm = confirmDeleteScreen.GetComponentInChildren<TMP_Text>();
+        textConfirm.text = "Tem certeza que deseja excluir o salvamento " + save.name + "?";
+    }
+
     public void OpenSaveGamesMenuFromDenial()
     {
         CloseDenialMessage();
@@ -76,6 +93,24 @@ public class GameMenu : MonoBehaviour
 
     #endregion
 
+    public void DeleteSave()
+    {
+        DirectoryInfo dirInfo = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] files = dirInfo.GetFiles();
+        foreach (FileInfo file in files)
+        {
+            if(Path.GetFileNameWithoutExtension(file.Name) == saveToDestroy.name)
+            {
+                file.Delete();
+                Destroy(saveToDestroy);
+                saveToDestroy = null;
+                CloseConfirmDelete();
+                Debug.Log("Arquivo deletado");
+                return;
+            }
+        }
+    }
+
     public void CreateNewGame()
     {
         string nameSave = inputNameGame.text;
@@ -84,17 +119,29 @@ public class GameMenu : MonoBehaviour
         
         if(string.IsNullOrEmpty(nameSave))
         {
-            Debug.Log("PREENCHA O CAMPO");
+            alertNameGame.text = "Insira um nome válido";
             return;
         }
-        else if(files.Length >= 3)
+
+        foreach (FileInfo file in files)
         {
-            Debug.Log("Quantidade máxima de salvamentos atingida. Exclua para poder criar mais");
+            if(Path.GetFileNameWithoutExtension(file.Name) == nameSave)
+            {
+                alertNameGame.text = "Já existe um salvamento com este nome";
+                return;
+            }
+        }
+
+        if(files.Length >= 3)
+        {
             denialMessageScreen.SetActive(true);
+            alertNameGame.text = "";
             return;
         }
         else
         {
+            
+            alertNameGame.text = "";
             GameManager.instance.saveFileName = nameSave;
             GameManager.GameData newGameData = new GameManager.GameData();
             GameManager.instance.SaveGame(newGameData);

@@ -117,6 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79e33474e540654b9e77ae7bead7d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjectsTopDown:
+  - {fileID: 5707481364507895417, guid: 04ac3eeba3bda4846a1a6ae9b4e32f9b, type: 3}
+  - {fileID: 9063542647900160503, guid: a18aab6e08164c742ab37b3fc4f78d4b, type: 3}
+  - {fileID: 7917525445133140873, guid: 6be35ed8e3c05194999bbf65d782b5d8, type: 3}
+  - {fileID: 4873973183525811444, guid: 85b444f3a3b15cc449648a3b576d2f05, type: 3}
   runningAnimated: {fileID: 5221522363204154388}
 --- !u!114 &7133744975860950426
 MonoBehaviour:
