@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetBool("isMoving", true);
-        AudioSource.PlayClipAtPoint(passos, Camera.main.transform.position, 0.5f);
+        AudioSource.PlayClipAtPoint(passos, Camera.main.transform.position, 0.7f);
     }else{
         animator.SetBool("isMoving", false);
     }
