@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     bool canMove;
     
     public static PLAYER state;
+
+    [SerializeField] private AudioClip passos; 
     
     private void Awake() 
     {
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetBool("isMoving", true);
+        AudioSource.PlayClipAtPoint(passos, Camera.main.transform.position, 0.7f);
     }else{
         animator.SetBool("isMoving", false);
     }
