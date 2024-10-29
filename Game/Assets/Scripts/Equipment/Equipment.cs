@@ -6,6 +6,10 @@ using UnityEngine.Events;
 
 public class Equipment : MonoBehaviour, IInteractable
 {
+    [SerializeField] private GameObject outlineOBJ;
+    private SpriteRenderer spriteEquipment;
+    public SpriteRenderer outline;
+
     public UnityEvent getEquipemnt;
 
     public EquipmentData equipmentData;
@@ -13,6 +17,13 @@ public class Equipment : MonoBehaviour, IInteractable
     // public Action getEquipemnt;
 
     private EquipmentManager equipmentManager;
+
+    private void Awake()
+    {
+        spriteEquipment = GetComponent<SpriteRenderer>();
+        outline = outlineOBJ.GetComponent<SpriteRenderer>();
+        outline.sprite = spriteEquipment.sprite;
+    }
 
     private void Start() {
         equipmentManager = FindFirstObjectByType<EquipmentManager>();
@@ -23,7 +34,6 @@ public class Equipment : MonoBehaviour, IInteractable
             Destroy(gameObject);  // Destrói se o objeto foi marcado como destruído
         }
     }
-
     // private void OnCollisionEnter2D(Collision2D collision) {
     //     if(collision.gameObject.tag == "Player"){
     //         equipmentManager.VerifyType(equipmentData);
@@ -39,19 +49,9 @@ public class Equipment : MonoBehaviour, IInteractable
     public void PickUpEquipment(){
         equipmentManager.VerifyType(equipmentData);
         getEquipemnt?.Invoke();
-        // SaveEquipmentState();
         DestroyPermanently();
         Destroy(gameObject);
     }
-
-    // public void SaveEquipmentState()
-    // {
-    //     GameManager.GameData data = new GameManager.GameData()
-    //     {
-    //         playerPosition = new Vector2(UnityEngine.Random.Range(0,9), UnityEngine.Random.Range(0,9))
-    //     };
-    //     saveManager.SaveGame(data);
-    // }
 
     public void DestroyPermanently()
     {

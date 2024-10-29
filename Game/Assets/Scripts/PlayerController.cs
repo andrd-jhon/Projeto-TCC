@@ -9,10 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     DialogSystem dialogSystem;
-    Dialog dialog;
-    FadeComponent fadeComponent;
     public GameObject collidedOBJ;
-
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
     public static bool playerIsClose;
@@ -22,9 +19,7 @@ public class PlayerController : MonoBehaviour
     
     private void Awake() 
     {
-        dialog = FindObjectOfType<Dialog>();
         dialogSystem = FindObjectOfType<DialogSystem>();
-        fadeComponent = FindObjectOfType<FadeComponent>();
     }
     
     private void Start() 
@@ -70,12 +65,22 @@ public class PlayerController : MonoBehaviour
         if(collided.CompareTag("Interactable")){
             collidedOBJ = collided.gameObject;
             playerIsClose = true;
+            if(collided.gameObject.GetComponent<Equipment>())
+            {
+                Equipment equipment = collided.gameObject.GetComponent<Equipment>();
+                equipment.outline.enabled = true;
+            }
             // Debug.Log("O player colidiu com o" + collidedOBJ.name);
         }
         
     }
     void OnTriggerExit2D(Collider2D collided) {
         if(collided.CompareTag("Interactable")){
+            if(collided.gameObject.GetComponent<Equipment>())
+            {
+                Equipment equipment = collided.gameObject.GetComponent<Equipment>();
+                equipment.outline.enabled = false;
+            }
             collidedOBJ = null;
             playerIsClose = false;
             // Debug.Log("O player saiu de colisao com o" + collided.gameObject.name);
@@ -84,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     
     void IsFree(){
+        if(dialogSystem == null) return;
         if(dialogSystem.state != STATE.DISABLED){
             state = PLAYER.INTERACT;
         }

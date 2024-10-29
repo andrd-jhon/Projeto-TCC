@@ -52,13 +52,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Test(){
-        GameManager.GameData data = LoadGame();
-        if(data != null){
-            SaveGame(data);
-        }
-        else{
-            Debug.Log("Falha no carregamento para o arquivo: " + saveFileName);
-        }
-    }
+    // public void Test(){
+    //     GameManager.GameData data = LoadGame();
+    //     if(data != null){
+    //         SaveGame(data);
+    //     }
+    //     else{
+    //         Debug.Log("Falha no carregamento para o arquivo: " + saveFileName);
+    //     }
+    // }
 }

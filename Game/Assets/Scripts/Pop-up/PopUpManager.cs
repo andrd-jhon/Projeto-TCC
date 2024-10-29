@@ -109,7 +109,7 @@ public class PopUpManager : MonoBehaviour
         interface1.SetActive(true);
     }
 
-    public IEnumerator verifyColor(Color colorAttempt){
+    public IEnumerator VerifyColor(Color colorAttempt){
         attemptIndicator.fadeImage.enabled = true;
         yield return StartCoroutine(attemptIndicator.Fade(colorAttempt, attemptIndicator.transparentColor, 1f));
         attemptIndicator.fadeImage.enabled = false;

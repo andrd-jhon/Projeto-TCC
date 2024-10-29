@@ -621,19 +621,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5732346554596957367, guid: ec4aba552c532bb4eb06277c60647ae7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -750,7 +750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f671554246e3c546921451bbfd1bca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationText: 
 --- !u!58 &285634519
 CircleCollider2D:
   m_ObjectHideFlags: 0

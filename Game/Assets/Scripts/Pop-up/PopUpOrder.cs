@@ -37,7 +37,6 @@ public class PopUpOrder : MonoBehaviour
     private List<string> correctOrderSteps = new List<string>();
 
     private bool isEqual;
-    private bool verifiable = false;
 
     public Color redAttempt = new Color(200f / 255, 75f / 255, 75f / 255, 255f / 255);
     private Color greenAttempt = new Color(75f / 255, 220f / 255, 75f / 255, 255f / 255);
@@ -164,14 +163,14 @@ public class PopUpOrder : MonoBehaviour
         isEqual = stepsFillable.SequenceEqual(correctOrderSteps);
         if (isEqual)
         {
-            StartCoroutine(popUpManager.verifyColor(greenAttempt));
+            StartCoroutine(popUpManager.VerifyColor(greenAttempt));
             Debug.Log("ORDEM CORRETA! você ganhou " + reward + " de recompensa");
             tempColor = greenAttempt;
             ExplanationOrExit();
         }
         else
         {
-            StartCoroutine(popUpManager.verifyColor(redAttempt));
+            StartCoroutine(popUpManager.VerifyColor(redAttempt));
             Debug.Log("ORDEM INCORRETA");
             for (int i = 0; i < stepsFillable.Count; i++)
             {
