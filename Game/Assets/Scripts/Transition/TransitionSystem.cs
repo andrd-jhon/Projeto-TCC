@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class TransitionSystem : MonoBehaviour
     // [SerializeField] private GameObject playerTopDown;
 
     [SerializeField] private List<GameObject> gameObjectsTopDown; 
+    [SerializeField] private List<GameObject> gameObjectsPlat; 
 
     private bool toToDown;
 
@@ -75,11 +77,13 @@ public class TransitionSystem : MonoBehaviour
     {
         GameManager.GameData data = GameManager.instance.LoadGame();
         
-
-        GameObject inicialPos = GameObject.Find(initialPositionName); // Encontre a posição inicial pelo nome
+        
+        
 
         if(toToDown)
         {
+            GameObject inicialPos = GameObject.Find(initialPositionName); // Encontre a posição inicial pelo nome
+
             InstantiateObjectsTopDown();
 
             if (inicialPos != null && transitionByName)
@@ -99,6 +103,10 @@ public class TransitionSystem : MonoBehaviour
                 inicialPos = null;
             }
         }
+        else if(SceneManager.GetActiveScene().name != "TestMenu")
+        {
+            InstantiateObjectsPlat();
+        }
 
         
         runningAnimated.SetActive(false);
@@ -112,4 +120,38 @@ public class TransitionSystem : MonoBehaviour
             Instantiate(obj);
         }
     }
+
+    private void InstantiateObjectsPlat()
+    {
+        foreach (GameObject obj in gameObjectsPlat)
+        {
+            Instantiate(obj);
+        }
+    }
+
+    // private void CarrySelectedEquipments()
+    // {
+    //     GameObject playerPlat = GameObject.Find("Player");
+    //     GameManager.GameData data = GameManager.instance.LoadGame();
+    //     if(data.selectedEquipments != null)
+    //     {
+    //         foreach(string equipmentName in data.selectedEquipments)
+    //         {
+    //             EquipmentData currentEquipment = TakeEquipment(equipmentName);
+    //             Instantiate(currentEquipment.equipmentGameObject, playerPlat.transform);
+    //         }
+    //     }
+    // }
+
+    // private EquipmentData TakeEquipment (string equipmentName)
+    // {
+    //     foreach (EquipmentData equipment in EquipmentManager.allEquipments)
+    //     {
+    //         if(equipment.equipmentName == equipmentName)
+    //         {
+    //             return equipment;
+    //         }
+    //     }
+    //     return null;
+    // }
 }

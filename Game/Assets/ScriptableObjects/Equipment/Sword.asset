@@ -17,3 +17,4 @@ MonoBehaviour:
   imageSelected: {fileID: 21300000, guid: f76733ee70e180e48894e491025abe0c, type: 3}
   description: "Espada antiga pesada com alto n\xEDvel cortante"
   equipmentCategory: 0
+  equipmentGameObject: {fileID: 6562023209792857316, guid: 2582bd576a853d74aa93d2ffaf997176, type: 3}

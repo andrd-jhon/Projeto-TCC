@@ -15,6 +15,8 @@ using UnityEngine;
     
     public EquipmentCategory equipmentCategory = new EquipmentCategory();
 
+    public GameObject equipmentGameObject;
+
 }
 public enum EquipmentCategory{
         sword,

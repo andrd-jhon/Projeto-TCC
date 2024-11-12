@@ -122,6 +122,8 @@ MonoBehaviour:
   - {fileID: 9063542647900160503, guid: a18aab6e08164c742ab37b3fc4f78d4b, type: 3}
   - {fileID: 7917525445133140873, guid: 6be35ed8e3c05194999bbf65d782b5d8, type: 3}
   - {fileID: 4873973183525811444, guid: 85b444f3a3b15cc449648a3b576d2f05, type: 3}
+  gameObjectsPlat:
+  - {fileID: 8161414201660459343, guid: 7a5a4a871b728d8499ece9bf2084e29e, type: 3}
   runningAnimated: {fileID: 5221522363204154388}
 --- !u!114 &7133744975860950426
 MonoBehaviour:

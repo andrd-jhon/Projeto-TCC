@@ -5,17 +5,24 @@ using UnityEngine;
 public class PlayerControllerPlat : MonoBehaviour
 {
     private float movementInputDirection;
+    private float knockbackStartTime;
+    [SerializeField] private float knockbackDuration;
 
     private Rigidbody2D rb;
     private Animator anim;
 
     private bool isWalking;
     private bool isFacingRight = true;
-    [SerializeField] private bool isGrounded;
+    public static bool isGrounded;
+
+    public static bool canMove = true;
     private bool canJump;
 
     private bool canDash = true;
     private bool isDashing;
+    private bool knockback;
+
+
     [SerializeField] private float dashForce; //24f
     [SerializeField] private float dashingTime; //0.2f
     [SerializeField] private float dashCooldown; //1f
@@ -26,6 +33,8 @@ public class PlayerControllerPlat : MonoBehaviour
     public float movementSpeed;
     public float groundCheckRadius;
     public float varJumpHeightMultiplier;
+
+    [SerializeField] private Vector2 knockbackSpeed;
 
     public Transform groundCheck;
 
@@ -44,13 +53,37 @@ public class PlayerControllerPlat : MonoBehaviour
         CheckSurroundings();
         CheckIfCanJump();
         UpdateAnimations();
+        CheckKnockback();
     }
 
     private void FixedUpdate() 
     {
-        if (!isDashing)
+        if (canMove && !isDashing)
         {
             ApplyMovement();   
+        }
+    }
+
+    public bool GetDashStatus()
+    {
+        return isDashing;
+    }
+
+    public void Knockback(int direction)
+    {
+        knockback = true;
+        anim.SetBool("Knockback", knockback);
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+    
+    private void CheckKnockback()
+    {
+        if(Time.time >= knockbackStartTime + knockbackDuration && knockback)
+        {
+            knockback = false;
+            anim.SetBool("Knockback", knockback);
+            rb.velocity = new Vector2(0.0f, rb.velocity.y);
         }
     }
 
@@ -99,7 +132,7 @@ public class PlayerControllerPlat : MonoBehaviour
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && !PlayerCombatController.isAttacking)
         {
             Jump();
         }
@@ -139,13 +172,19 @@ public class PlayerControllerPlat : MonoBehaviour
 
     private void ApplyMovement()
     {
-        rb.velocity = new Vector2( movementSpeed * movementInputDirection, rb.velocity.y);
+        if(!knockback)
+        {
+            rb.velocity = new Vector2( movementSpeed * movementInputDirection, rb.velocity.y);
+        }
     }
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+        if(!knockback)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
     }
 
     private void OnDrawGizmos() 

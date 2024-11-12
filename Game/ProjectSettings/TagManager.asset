@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - InicialPosition
   - TriggerCollision
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -28,11 +29,11 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PlayerPlat
+  - DarkFade
   - Ground
-  - 
-  - 
-  - 
+  - Damageable
+  - Dead
   - 
   - 
   - 
@@ -50,4 +51,13 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 638940799
+    locked: 0
+  - name: PlayerPlat
+    uniqueID: 3364782973
+    locked: 0
+  - name: DarkFade
+    uniqueID: 2064568549
+    locked: 0
+  - name: Enemy
+    uniqueID: 1928365115
     locked: 0

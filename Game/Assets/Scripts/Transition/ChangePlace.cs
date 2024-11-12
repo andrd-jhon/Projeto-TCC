@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -37,13 +38,16 @@ public class ChangePlace : MonoBehaviour, IInteractable
     private void ChangeScene()
     {
         PlayerController.state = PLAYER.INTERACT;
+
         if(!notToTopDown)
         {
             StartCoroutine(transitionSystem.Transition(nameScene, positionName));
             MarkLastScene();
         }
-        else{
+        else
+        {
             StartCoroutine(transitionSystem.TransitionAsync(nameScene));
+            MarkLastSceneThis();
         }
     }
 
@@ -62,10 +66,30 @@ public class ChangePlace : MonoBehaviour, IInteractable
         StartCoroutine(transitionSystem.Transition(data.lastScene, data.lastPlayerPosition));
     }
 
+    public void PhaseToLastScene()
+    {
+        GameManager.GameData data = GameManager.instance.LoadGame();
+        StartCoroutine(transitionSystem.Transition(data.lastScene, data.lastPlayerPosition));
+    }
+
+    public void ToSameScene()
+    {
+        StartCoroutine(transitionSystem.TransitionAsync(SceneManager.GetActiveScene().name));
+    }
+
     private void MarkLastScene()
     {
         GameManager.GameData data = GameManager.instance.LoadGame();
         data.lastScene = nameScene;
+        if(playerController != null) data.lastPlayerPosition = playerController.transform.position;
+        GameManager.instance.SaveGame(data);
+    }
+
+    private void MarkLastSceneThis()
+    {
+        GameManager.GameData data = GameManager.instance.LoadGame();
+        data.lastScene = SceneManager.GetActiveScene().name;
+        if(playerController != null) data.lastPlayerPosition = playerController.transform.position;
         GameManager.instance.SaveGame(data);
     }
 
