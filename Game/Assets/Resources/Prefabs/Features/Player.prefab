@@ -721,9 +721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2131599575331978344}
   collidedOBJ: {fileID: 0}
-  speed: 5
+  speed: 8
   rb: {fileID: 242591183488381543}
-  passos: {fileID: 8300000, guid: e18d7b708fb03c44fbc6954b4056366f, type: 3}
 --- !u!61 &8682503625164913168
 BoxCollider2D:
   m_ObjectHideFlags: 0

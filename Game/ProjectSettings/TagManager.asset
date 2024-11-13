@@ -55,6 +55,9 @@ TagManager:
   - name: PlayerPlat
     uniqueID: 3364782973
     locked: 0
+  - name: Equipments
+    uniqueID: 1254600023
+    locked: 0
   - name: DarkFade
     uniqueID: 2064568549
     locked: 0

@@ -6,7 +6,7 @@ public class PlataformManager : MonoBehaviour
 {
     [SerializeField] private List<EquipmentData> allEquipments;
 
-    private void Start()
+    private void Awake()
     {
         CarrySelectedEquipments();
     }
@@ -20,7 +20,10 @@ public class PlataformManager : MonoBehaviour
             foreach(string equipmentName in data.selectedEquipments)
             {
                 EquipmentData currentEquipment = TakeEquipment(equipmentName);
-                Instantiate(currentEquipment.equipmentGameObject, playerPlat.transform);
+                if(currentEquipment.equipmentGameObject != null)
+                {
+                    Instantiate(currentEquipment.equipmentGameObject, playerPlat.transform);
+                }
             }
         }
     }
@@ -31,7 +34,6 @@ public class PlataformManager : MonoBehaviour
         {
             if(equipment.equipmentName == equipmentName)
             {
-                Debug.Log(equipment.equipmentName);
                 return equipment;
             }
         }

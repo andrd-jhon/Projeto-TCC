@@ -97,7 +97,6 @@ public class TransitionSystem : MonoBehaviour
             }
             else if(initialPositionPlace != null && !transitionByName)
             {
-                Debug.Log("ESTA SENDO EXECUTADO");
                 playerController = FindObjectOfType<PlayerController>();
                 playerController.transform.position = initialPositionPlace;
                 inicialPos = null;

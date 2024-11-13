@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/" + saveFileName + ".json", json); //AQUI QUE CRIA O ARQUIVO
-        Debug.Log("JOGO SALVO");
     }
 
     public GameData LoadGame()
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Nenhum arquivo encontrado com nome :" + saveFileName);
             return null;
             // return new GameData();
         }

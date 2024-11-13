@@ -234,7 +234,6 @@ public class EquipmentManager : MonoBehaviour
                     insertMethod(equipmentData, potionField);
                     break;
             }
-            Debug.Log("O NOME DESTE EQUIPAMENTO É " + equipmentData.equipmentName);
         }
     }
 

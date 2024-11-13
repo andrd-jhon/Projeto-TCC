@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pixel Art Runner_0: -8653771363842759552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

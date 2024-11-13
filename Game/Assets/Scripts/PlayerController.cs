@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     
     public static PLAYER state;
 
-    [SerializeField] private AudioClip passos; 
     
     private void Awake() 
     {
@@ -55,7 +54,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetBool("isMoving", true);
-        AudioSource.PlayClipAtPoint(passos, Camera.main.transform.position, 0.7f);
     }else{
         animator.SetBool("isMoving", false);
     }
@@ -73,7 +71,6 @@ public class PlayerController : MonoBehaviour
                 Equipment equipment = collided.gameObject.GetComponent<Equipment>();
                 equipment.outline.enabled = true;
             }
-            // Debug.Log("O player colidiu com o" + collidedOBJ.name);
         }
         
     }
@@ -86,7 +83,6 @@ public class PlayerController : MonoBehaviour
             }
             collidedOBJ = null;
             playerIsClose = false;
-            // Debug.Log("O player saiu de colisao com o" + collided.gameObject.name);
         }   
     }
 

@@ -164,14 +164,12 @@ public class PopUpOrder : MonoBehaviour
         if (isEqual)
         {
             StartCoroutine(popUpManager.VerifyColor(greenAttempt));
-            Debug.Log("ORDEM CORRETA! você ganhou " + reward + " de recompensa");
             tempColor = greenAttempt;
             ExplanationOrExit();
         }
         else
         {
             StartCoroutine(popUpManager.VerifyColor(redAttempt));
-            Debug.Log("ORDEM INCORRETA");
             for (int i = 0; i < stepsFillable.Count; i++)
             {
                 if (i >= correctOrderSteps.Count || (stepsFillable[i] != correctOrderSteps[i] && !string.IsNullOrEmpty(stepsFillable[i])))
@@ -213,7 +211,6 @@ public class PopUpOrder : MonoBehaviour
             case 3:
                 reward = popUpData.fourthReward;
                 attempt3.color = currentColor;
-                Debug.Log("Não foi dessa vez. Ganhou " + reward + " de recompensa");
                 exitButton.SetActive(true);
                 popUpManager.DesactiveMouseEvents();
                 break;

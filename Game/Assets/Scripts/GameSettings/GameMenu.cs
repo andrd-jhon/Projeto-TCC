@@ -105,7 +105,6 @@ public class GameMenu : MonoBehaviour
                 Destroy(saveToDestroy);
                 saveToDestroy = null;
                 CloseConfirmDelete();
-                Debug.Log("Arquivo deletado");
                 return;
             }
         }
@@ -146,7 +145,6 @@ public class GameMenu : MonoBehaviour
             GameManager.GameData newGameData = new GameManager.GameData();
             GameManager.instance.SaveGame(newGameData);
             changeToNewGame.Interact();
-            Debug.Log("NOVO ARQUIVO CRIADO COM NOME: " + nameSave);
         }
     }
 
