@@ -7,19 +7,22 @@ using UnityEngine.Rendering;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] private bool combatEnabled;
-    [SerializeField] private float inputTimer, attack1Radius, attack1Damage;
+    [SerializeField] private bool combatEnabled, defenseEnabled;
+    [SerializeField] private float inputTimer, attack1Radius, attack1Damage, recoveryDefenseCooldown;
     [SerializeField] Transform attack1HitBoxPos;
     [SerializeField] LayerMask whatIsDamagable;
-    public static bool isAttacking;
+    public bool isAttacking, isGroundAttacking, airAttacked, isDefending;
     [SerializeField] private float stepForce;
     [SerializeField] private float timeStep;
-    [SerializeField] private int currentAttack;
-    private bool gotInput;
+    [SerializeField] private int currentAttack, canDefendNumber;
+    private float lastDefenseTime;
+    private bool gotInput, gotInputDefense;
     private float[] attackDetails = new float[2];
+    private int currentDefense;
 
     private Animator anim;
     private Rigidbody2D rb;
+    private Collider2D _collider;
 
     private PlayerControllerPlat PC;
     private PlayerStats PS;
@@ -29,19 +32,28 @@ public class PlayerCombatController : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         PC = GetComponent<PlayerControllerPlat>();
-        anim.SetBool("canAttack", combatEnabled);
         PS = GetComponent<PlayerStats>();
+        _collider = GetComponent<Collider2D>();
+        anim.SetBool("canAttack", combatEnabled);
+        
     }
 
     private void Update()
     {
         CheckCombatInput();
         CheckAttacks();
+        CheckDefense();
         CheckAttacking();
+        CheckIsGrounded();
     }
 
     private void FixedUpdate() {
         
+    }
+
+    private void CheckIsGrounded()
+    {
+        if(PC.isGrounded) airAttacked = false;
     }
 
     private void CheckCombatInput()
@@ -59,15 +71,66 @@ public class PlayerCombatController : MonoBehaviour
             currentAttack = 0;
             gotInput = false;
         }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            if(defenseEnabled)
+            {
+                gotInputDefense = true;
+                
+            }
+        }
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            if(defenseEnabled)
+            {
+                gotInputDefense = false;
+                combatEnabled = true;
+                isDefending = false;
+                anim.SetBool("isDefending", isDefending);
+            }
+        }
     }
+
+    // private void CheckDefenseInput()
+    // {
+    //     if(Input.GetMouseButtonDown(1))
+    //     {
+    //         if(defenseEnabled)
+    //         {
+    //             gotInputDefense = true;
+                
+    //         }
+    //     }
+    // }
 
     private void CheckAttacks()
     {
         if(gotInput)
         {
-            if(!isAttacking && currentAttack == 0 && PlayerControllerPlat.isGrounded)
+            defenseEnabled = false;
+            if(!isAttacking && currentAttack == 0 && PC.isGrounded)
             {
                 ExecuteAttack1();
+            }
+            else if(!isAttacking && !PC.isGrounded)
+            {
+                ExecuteAttackAir();
+            }
+        }
+        
+    }
+
+    private void CheckDefense()
+    {
+        if(gotInputDefense && PC.isGrounded && !isAttacking)
+        {
+            combatEnabled = false;
+            if(!isDefending)
+            {
+                isDefending = true;
+                anim.SetBool("isDefending", isDefending);
             }
         }
         
@@ -86,12 +149,34 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-    private void FinishAttack()
+    private void CheckDefenseHitBox()
+    {
+        // Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamagable);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamagable);
+
+        attackDetails[0] = 0;
+        attackDetails[1] = transform.position.x;
+
+        foreach(Collider2D collider in detectedObjects)
+        {
+            collider.transform.parent.SendMessage("Damage", attackDetails);
+        }
+    }
+
+    private void RecoveryDefense()
+    {
+
+    }
+
+    private void FinishAttack() //CHAMADO NA ANIMAÇÃO
     {   
-        if(gotInput){
+        if(gotInput && PC.isGrounded){
             
             switch(currentAttack)
             {
+                case 0:
+                    ExecuteAttack1();
+                    break;
                 case 1:
                     ExecuteAttack2();
                     break;
@@ -110,7 +195,8 @@ public class PlayerCombatController : MonoBehaviour
             isAttacking = false;
             anim.SetBool("isAttacking", isAttacking);
             currentAttack = 0;
-            
+            isGroundAttacking = false;
+            defenseEnabled = true;
         }
     }
 
@@ -118,28 +204,35 @@ public class PlayerCombatController : MonoBehaviour
     {
         if(!PC.GetDashStatus())
         {
-            int direction;
-
-            PS.DecreaseHealth(attackDetails[0]);
-
-            if(attackDetails[1] < transform.position.x)
+            if(isDefending && attackDetails[1] < transform.position.x && !PC.isFacingRight || attackDetails[1] > transform.position.x && PC.isFacingRight)
             {
-                direction = 1;
+                Debug.Log("DEFENDIDO");
+                CheckDefenseHitBox();
             }
             else
             {
-                direction = -1;
+                int direction;
+
+                PS.DecreaseHealth(attackDetails[0]);
+
+                if(attackDetails[1] < transform.position.x)
+                {
+                    direction = 1;
+                }
+                else
+                {
+                    direction = -1;
+                }
+
+                PC.Knockback(direction);
+                isAttacking = false;
             }
-
-            PC.Knockback(direction);
         }
-
-        
     }
 
     private void CheckAttacking()
     {
-        PlayerControllerPlat.canMove = !isAttacking;
+        PC.isAttacking = isGroundAttacking;
     }
 
     private void OnDrawGizmos()
@@ -150,6 +243,7 @@ public class PlayerCombatController : MonoBehaviour
     private void ExecuteAttack1()
     {
         isAttacking = true;
+        isGroundAttacking = true;
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("isFirstAttack", true);
         anim.SetBool("isSecondAttack", false);
@@ -160,6 +254,8 @@ public class PlayerCombatController : MonoBehaviour
 
     private void ExecuteAttack2()
     {
+        isAttacking = true;
+        isGroundAttacking = true;
         anim.SetBool("isSecondAttack", true);
         anim.SetBool("isFirstAttack", false);
         anim.SetBool("isThirdAttack", false);
@@ -170,12 +266,24 @@ public class PlayerCombatController : MonoBehaviour
 
     private void ExecuteAttack3()
     {
+        isAttacking = true;
+        isGroundAttacking = true;
         anim.SetBool("isThirdAttack", true);
         anim.SetBool("isFirstAttack", false);
         anim.SetBool("isSecondAttack", false);
         currentAttack++;
         // rb.AddForce(new Vector2(stepForce, rb.velocityY));
         StartCoroutine(StepAttack());
+    }
+
+    private void ExecuteAttackAir()
+    {
+        if(!airAttacked)
+        {
+            isAttacking = true;
+            airAttacked = true;
+            anim.SetBool("isAttacking", isAttacking);
+        }
     }
 
     private IEnumerator StepAttack()
@@ -192,5 +300,6 @@ public class PlayerCombatController : MonoBehaviour
             yield return null; // Espera o próximo frame
         }
         transform.position = targetPosition; // Garante que a posição final seja exatamente a posição de destino
-}
+        isAttacking = false;
+    }
 }

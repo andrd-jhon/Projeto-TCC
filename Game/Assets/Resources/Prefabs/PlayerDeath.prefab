@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -930184323
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 9123403560725521772, guid: e5173224231426041bec0a9b5bb130b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
