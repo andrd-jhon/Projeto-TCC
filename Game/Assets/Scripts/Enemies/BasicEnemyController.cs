@@ -26,7 +26,7 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private Vector2 knockbackSpeed;
 
-    private bool groundDetected, wallDetected;
+    private bool groundDetected, wallDetected, canMove = true, isKnockback;
 
     private float currentHealth, knockbackStartTime;
 
@@ -60,40 +60,50 @@ public class BasicEnemyController : MonoBehaviour
                 UpdateDeadState();
                 break;
         }
+        // Debug.Log(movement);
     }
 
     //WALKING STATE ----------------------
     private void EnterWalkingState()
     {
-
+        canMove = true;
     }
 
     private void UpdateWalkingState()
     {
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
-        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
-
-        CheckTouchDamage();
-
-        if(!groundDetected || wallDetected)
+        if(canMove)
         {
-            Flip();
-        }
-        else
-        {
-            movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
-            aliveRb.velocity = movement;
+            groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+            wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+            CheckTouchDamage();
+
+            if(!groundDetected || wallDetected)
+            {
+                Flip();
+            }
+            else
+            {
+                if(!isKnockback)
+                {
+                    movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
+                    aliveRb.velocity = movement;
+                }
+                
+            }
         }
     }
 
     private void ExitWalkingState()
     {
-
+        canMove = false;
     }
 
     //KNOCKBACK STATE ----------------------
     private void EnterKnockbackState()
     {
+        isKnockback = true;
+        canMove = false;
         knockbackStartTime = Time.time;
         movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
         aliveRb.velocity = movement;
@@ -113,6 +123,7 @@ public class BasicEnemyController : MonoBehaviour
     private void ExitKnockbackState()
     {
         aliveAnim.SetBool("Knockback", false);
+        isKnockback = false;
     }
 
     //DEAD STATE ----------------------

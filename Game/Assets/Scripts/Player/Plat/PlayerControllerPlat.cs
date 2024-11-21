@@ -175,7 +175,14 @@ public class PlayerControllerPlat : MonoBehaviour
     {
         if(!knockback && !isAttacking && !isDashing)
         {
-            rb.velocity = new Vector2( movementSpeed * movementInputDirection, rb.velocity.y);
+            if(PCC.isDefending)
+            {
+                rb.velocity = new Vector2( movementSpeed / 2 * movementInputDirection, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2( movementSpeed * movementInputDirection, rb.velocity.y);
+            }
         }
     }
 

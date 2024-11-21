@@ -9,16 +9,17 @@ public class PlayerCombatController : MonoBehaviour
 {
     [SerializeField] private bool combatEnabled, defenseEnabled;
     [SerializeField] private float inputTimer, attack1Radius, attack1Damage, recoveryDefenseCooldown;
-    [SerializeField] Transform attack1HitBoxPos;
+    [SerializeField] Transform attack1HitBoxPos, defenseHitPos;
     [SerializeField] LayerMask whatIsDamagable;
     public bool isAttacking, isGroundAttacking, airAttacked, isDefending;
     [SerializeField] private float stepForce;
     [SerializeField] private float timeStep;
-    [SerializeField] private int currentAttack, canDefendNumber;
+    [SerializeField] private int currentAttack, totalDefensesNumber, defensesRemaining;
     private float lastDefenseTime;
     private bool gotInput, gotInputDefense;
     private float[] attackDetails = new float[2];
-    private int currentDefense;
+    // private int currentDefense;
+    // private int defensesRemaining; // DEIXAR
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -35,7 +36,7 @@ public class PlayerCombatController : MonoBehaviour
         PS = GetComponent<PlayerStats>();
         _collider = GetComponent<Collider2D>();
         anim.SetBool("canAttack", combatEnabled);
-        
+        defensesRemaining = totalDefensesNumber;
     }
 
     private void Update()
@@ -45,6 +46,7 @@ public class PlayerCombatController : MonoBehaviour
         CheckDefense();
         CheckAttacking();
         CheckIsGrounded();
+        RecoveryDefense();
     }
 
     private void FixedUpdate() {
@@ -124,16 +126,25 @@ public class PlayerCombatController : MonoBehaviour
 
     private void CheckDefense()
     {
-        if(gotInputDefense && PC.isGrounded && !isAttacking)
+        if(gotInputDefense)
         {
-            combatEnabled = false;
-            if(!isDefending)
+            if(PC.isGrounded && !isAttacking && defenseEnabled && defensesRemaining > 0)
             {
-                isDefending = true;
+                combatEnabled = false;
+                if(!isDefending)
+                {
+                    isDefending = true;
+                    anim.SetBool("isDefending", isDefending);
+                }
+            }
+            else
+            {
+                combatEnabled = true;
+                isDefending = false;
                 anim.SetBool("isDefending", isDefending);
             }
+            
         }
-        
     }
 
     private void CheckAttackHitBox()
@@ -152,7 +163,7 @@ public class PlayerCombatController : MonoBehaviour
     private void CheckDefenseHitBox()
     {
         // Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamagable);
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamagable);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(defenseHitPos.position, 0.75f, whatIsDamagable);
 
         attackDetails[0] = 0;
         attackDetails[1] = transform.position.x;
@@ -165,7 +176,15 @@ public class PlayerCombatController : MonoBehaviour
 
     private void RecoveryDefense()
     {
-
+        if(defensesRemaining < totalDefensesNumber)
+        {
+            if(Time.time >= lastDefenseTime + recoveryDefenseCooldown)
+            {
+                Debug.Log("O tempo é maior");
+                defensesRemaining++;
+                if(defensesRemaining < totalDefensesNumber) lastDefenseTime = Time.time;
+            }
+        }
     }
 
     private void FinishAttack() //CHAMADO NA ANIMAÇÃO
@@ -204,10 +223,11 @@ public class PlayerCombatController : MonoBehaviour
     {
         if(!PC.GetDashStatus())
         {
-            if(isDefending && attackDetails[1] < transform.position.x && !PC.isFacingRight || attackDetails[1] > transform.position.x && PC.isFacingRight)
+            if(isDefending && attackDetails[1] < transform.position.x && !PC.isFacingRight || isDefending && attackDetails[1] > transform.position.x && PC.isFacingRight)
             {
-                Debug.Log("DEFENDIDO");
                 CheckDefenseHitBox();
+                if(defensesRemaining > 0) defensesRemaining--;
+                lastDefenseTime = Time.time;
             }
             else
             {
@@ -238,6 +258,7 @@ public class PlayerCombatController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attack1HitBoxPos.position, attack1Radius);
+        Gizmos.DrawWireSphere(defenseHitPos.position, 0.75f);
     }
 
     private void ExecuteAttack1()
