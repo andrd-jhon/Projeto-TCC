@@ -6,23 +6,47 @@ using UnityEngine.UI;
 public class GamePhase : MonoBehaviour
 {
     [SerializeField] private GameObject defeatPanel;
-    [SerializeField] private GameObject darkObj;
+    [SerializeField] private GameObject darkDefeatObj;
 
-    private Image darkBG;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject darkPauseObj;
+
+    private bool pauseIsOpen;
+    private bool defeatIsOpen;
+
+    private Image darkDefeatBG;
 
     private void Start()
     {
-        darkBG = darkObj.GetComponent<Image>();
+        darkDefeatBG = darkDefeatObj.GetComponent<Image>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && !pauseIsOpen && !defeatIsOpen)
+        {
+            OpenPausePanel();
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && pauseIsOpen && !defeatIsOpen)
+        {
+            ClosePausePanel();
+        }
+
+        if(defeatIsOpen && pauseIsOpen)
+        {
+            ClosePausePanel();
+        }
     }
 
     public void ShowDefeat()
     {
+        defeatIsOpen = true;
         StartCoroutine(DarkGB());
     }
 
     private IEnumerator DarkGB()
     {
-        darkObj.SetActive(true);
+        darkDefeatObj.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
@@ -31,10 +55,24 @@ public class GamePhase : MonoBehaviour
         while(timeElapsed < 1)
         {
             timeElapsed += Time.deltaTime;
-            darkBG.color = Color.Lerp(new Color(0,0,0,0), new Color(0,0,0,0.5f), timeElapsed / 1);
+            darkDefeatBG.color = Color.Lerp(new Color(0,0,0,0), new Color(0,0,0,0.5f), timeElapsed / 1);
             yield return null;
         }
 
         defeatPanel.SetActive(true);
+    }
+
+    private void OpenPausePanel()
+    {
+        pauseIsOpen = true;
+        pausePanel.SetActive(true);
+        darkPauseObj.SetActive(true);
+    }
+
+    public void ClosePausePanel()
+    {
+        pauseIsOpen = false;
+        pausePanel.SetActive(false);
+        darkPauseObj.SetActive(false);
     }
 }
