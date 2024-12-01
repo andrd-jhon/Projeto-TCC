@@ -38,9 +38,12 @@ public class SyncAnimatorEquipments : MonoBehaviour
                                   playerStateInfo.IsName("Attack1") ? "Attack1" :
                                   playerStateInfo.IsName("Attack2") ? "Attack2" :
                                   playerStateInfo.IsName("Attack3") ? "Attack3" :
+                                  playerStateInfo.IsName("AttackAir") ? "AttackAir" :
                                   playerStateInfo.IsName("Jump") ? "Jump" :
                                   playerStateInfo.IsName("Fall") ? "Fall" :
                                   playerStateInfo.IsName("Hurt") ? "Hurt" :
+                                  playerStateInfo.IsName("Defense") ? "Defense" :
+                                  playerStateInfo.IsName("DefenseWalk") ? "DefenseWalk" :
                                    "None";
 
         // Se o estado do Player mudou, atualiza os Animators dos equipamentos
@@ -50,15 +53,19 @@ public class SyncAnimatorEquipments : MonoBehaviour
 
             foreach (Animator equipmentAnimator in equipmentAnimators)
             {
+                
                 // Atualiza os parâmetros dos equipamentos de acordo com o novo estado
                 equipmentAnimator.SetBool("isIdle", currentStateName == "Idle");
                 equipmentAnimator.SetBool("isWalking", currentStateName == "Walk");
                 equipmentAnimator.SetBool("isAttacking1", currentStateName == "Attack1");
                 equipmentAnimator.SetBool("isAttacking2", currentStateName == "Attack2");
                 equipmentAnimator.SetBool("isAttacking3", currentStateName == "Attack3");
+                equipmentAnimator.SetBool("isAttackingAir", currentStateName == "AttackAir");
                 equipmentAnimator.SetBool("isJumping", currentStateName == "Jump");
                 equipmentAnimator.SetBool("isFalling", currentStateName == "Fall");
                 equipmentAnimator.SetBool("isHurt", currentStateName == "Hurt");
+                equipmentAnimator.SetBool("isDefending", currentStateName == "Defense");
+                equipmentAnimator.SetBool("isDefendingWalking", currentStateName == "DefenseWalk");
             }
         }
     }

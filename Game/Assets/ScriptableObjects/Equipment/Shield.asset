@@ -17,3 +17,4 @@ MonoBehaviour:
   imageSelected: {fileID: 21300000, guid: 462cb3f7af8818d43b7c0e03305db037, type: 3}
   description: Escudo de madeira comum
   equipmentCategory: 2
+  equipmentGameObject: {fileID: 3482356023862106047, guid: a6d1378c1c2ee084f84e4fcb5d66b344, type: 3}
