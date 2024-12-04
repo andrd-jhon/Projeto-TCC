@@ -180,7 +180,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             if(Time.time >= lastDefenseTime + recoveryDefenseCooldown)
             {
-                Debug.Log("O tempo é maior");
+                // Debug.Log("O tempo é maior");
                 defensesRemaining++;
                 if(defensesRemaining < totalDefensesNumber) lastDefenseTime = Time.time;
             }

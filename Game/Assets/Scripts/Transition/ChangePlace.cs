@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -18,7 +17,7 @@ public class ChangePlace : MonoBehaviour, IInteractable
 
     public string currentSave;
 
-    // private GameManager saveManager;
+    // private GameManager saveManagers;
 
     PlayerController playerController;
 

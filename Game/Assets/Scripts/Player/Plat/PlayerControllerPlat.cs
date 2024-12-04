@@ -158,14 +158,14 @@ public class PlayerControllerPlat : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        Debug.Log("DASH TRUE");
+        // Debug.Log("DASH TRUE");
         float gravityDefault = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(movementInputDirection * dashForce, 0f);
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = gravityDefault;
         isDashing = false;
-        Debug.Log("DASH FALSE");
+        // Debug.Log("DASH FALSE");
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }

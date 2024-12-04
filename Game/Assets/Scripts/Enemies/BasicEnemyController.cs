@@ -23,7 +23,7 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField] private float groundCheckDistance, wallCheckDistance, movementSpeed, maxHealth, knockbackDuration, lastTouchDamageTime, touchDamageCooldown, touchDamage, touchDamageWidth, touchDamageHeight;
 
     [SerializeField] private Transform groundCheck, wallCheck, touchDamageCheck;
-    [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
+    [SerializeField] private LayerMask whatIsGround, whatIsWall, whatIsPlayer;
     [SerializeField] private Vector2 knockbackSpeed;
 
     private bool groundDetected, wallDetected, canMove = true, isKnockback;

@@ -1074,7 +1074,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourceMusicaDeFundo: {fileID: 223861758}
-  musicasDeFundo: []
+  musicasDeFundo:
+  - {fileID: 8300000, guid: d1fe3854280e0c44ba8a0282def042ce, type: 3}
 --- !u!4 &223861760
 Transform:
   m_ObjectHideFlags: 0
@@ -8129,9 +8130,10 @@ MonoBehaviour:
     de Arte: Gabriel Henry \n\nArtistas de Conceito:\nJos\xE9 Ricardo\n\nModelagem
     2D:\nGabriel Henry \n\nAnima\xE7\xE3o:\nGabriel Henry\n\n\xC1udio\nDesigner de
     Som:\nDaniel K\xE9sede \n\n\nRoteiro e Narrativa\n\nRoteirista Principal:\nGabriel
-    Henry \n\nRoteiristas Assistentes:\nJos\xE9 Ricardo \nDaniel K\xE9sede \n\n\nAgradecimentos
-    Especiais\nCentro Paula Souza\nMarcos Costa\nMarcos Nogueira\nLuis Felipe\n\n\n\nFerramentas
-    e Tecnologias\n\nEngine de Jogo:\nUnity\n\nSoftwares Utilizados:\nLibresprite\n\nCriado
+    Henry \n\nRoteiristas Assistentes:\nJos\xE9 Ricardo \nDaniel K\xE9sede \n\n\nDesenvolvedores
+    do Site:\nGeovanna Gaia\nJo\xE3o Vitor\nBruno Rodrigues\n\n\nAgradecimentos Especiais\nCentro
+    Paula Souza\nMarcos Costa\nMarcos Nogueira\nLuis Felipe\n\n\n\nFerramentas e
+    Tecnologias\n\nEngine de Jogo:\nUnity\n\nSoftwares Utilizados:\nLibresprite\n\nCriado
     com paix\xE3o por Pingo\n\nTransformar aventuras em mem\xF3rias inesquec\xEDveis."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39b527f2bad8e054ea5212da3f525295, type: 2}

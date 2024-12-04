@@ -32,9 +32,9 @@ TagManager:
   - PlayerPlat
   - DarkFade
   - Ground
+  - Wall
   - Damageable
   - Dead
-  - 
   - 
   - 
   - 

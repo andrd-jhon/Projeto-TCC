@@ -96,7 +96,7 @@ public class DialogSystem : MonoBehaviour
                 currentText = 0;
                 finished = false;
                 PlayerController.state = PLAYER.FREE;
-                Debug.Log(PLAYER.FREE);
+                // Debug.Log(PLAYER.FREE);
                 npcDialog.finishDialog?.Invoke();
             }
         }
