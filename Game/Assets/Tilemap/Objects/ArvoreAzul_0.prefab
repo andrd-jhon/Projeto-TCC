@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6514925045139608252}
   - component: {fileID: 8612703313385557409}
-  - component: {fileID: 3857370253261731742}
+  - component: {fileID: 4919173933439643798}
   m_Layer: 0
   m_Name: ArvoreAzul_0
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2569622774630656496}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.235, y: -0.137, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!60 &3857370253261731742
+--- !u!60 &4919173933439643798
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.47877812, y: 0.17443699}
     oldSize: {x: 3, y: 4}
     newSize: {x: 3, y: 4}
     adaptiveTilingThreshold: 0.5
@@ -133,19 +133,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.049506903, y: -0.21246539}
-      - {x: 0.057227954, y: -0.12811723}
-      - {x: 0.015067756, y: -0.11981982}
-      - {x: -0.036802888, y: -0.1103636}
-      - {x: -0.11789952, y: -0.119333655}
-      - {x: -0.15727967, y: -0.12955186}
-      - {x: -0.205, y: -0.16499999}
-      - {x: -0.185, y: -0.21499999}
-      - {x: -0.16499999, y: -0.255}
-      - {x: -0.105, y: -0.265}
-      - {x: 0.105, y: -0.265}
-      - {x: 0.13499999, y: -0.255}
-      - {x: 0.18362673, y: -0.20827977}
-      - {x: 0.16988677, y: -0.178353}
-      - {x: 0.06882033, y: -0.13079259}
+    - - {x: 0.7647073, y: 0.24765706}
+      - {x: 0.3783716, y: 0.31567216}
+      - {x: -0.11249858, y: 0.32590482}
+      - {x: -0.57156694, y: 0.26119903}
+      - {x: -0.80771947, y: 0.17302477}
+      - {x: -1.1362731, y: -0.018887043}
+      - {x: -1.1976702, y: -0.23898542}
+      - {x: -0.9988344, y: -0.51024795}
+      - {x: -0.9988344, y: -0.51024795}
+      - {x: -0.45459414, y: -0.62170625}
+      - {x: -0.12383437, y: -0.63524795}
+      - {x: 0.43866563, y: -0.63524795}
+      - {x: 0.9386656, y: -0.51024795}
+      - {x: 1.2544746, y: -0.26968396}
+      - {x: 1.100982, y: 0.07572055}
+      - {x: 0.9522073, y: 0.2059294}
   m_UseDelaunayMesh: 0
